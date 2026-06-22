@@ -1,11 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学习资料</title>
+    <meta>
+    <title>📚 学习资料</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; max-width: 820px; margin: 40px auto; padding: 0 20px; background: #f8fafc; }
+        h1 { font-weight: 600; font-size: 1.8rem; margin-bottom: 0; }
+        .sub { color: #64748b; margin-top: 4px; }
+        hr { border: none; border-top: 2px solid #e2e8f0; margin: 20px 0; }
+        ul { list-style: none; padding-left: 24px; }
+        li { margin: 4px 0; }
+        .folder { cursor: pointer; font-weight: 500; color: #0f172a; padding: 4px 8px; border-radius: 6px; display: inline-block; }
+        .folder:hover { background: #e2e8f0; }
+        .file a { color: #2563eb; text-decoration: none; padding: 4px 8px; border-radius: 6px; display: inline-block; }
+        .file a:hover { background: #dbeafe; }
+        .hidden { display: none; }
+        .footer { margin-top: 30px; color: #94a3b8; font-size: 0.85rem; }
+        .footer a { color: #2563eb; text-decoration: none; }
+    </style>
 </head>
 <body>
-    
+
+    <h1>📚 学习资料库</h1>
+    <p class="sub">点击 📁 文件夹展开 / 收起</p>
+    <hr>
+
+    <div id="tree-container"></div>
+
+    <hr>
+    <div class="footer">
+        <a href="https://github.com/ladypinkelf-elysia/Learning-Resources" target="_blank">GitHub 仓库</a>
+    </div>
+
+    <script>
+        // ============================================================
+        // 🔧 在这里列出你的所有资料（完整路径，从仓库根目录开始）
+        // 新增文件时，直接在数组里加一行即可
+        // ============================================================
+        const files = [
+            "Mathematics/Advanced/ODE/化归.html"   
+        ];
+
+        // ============================================================
+        // 以下代码自动构建树形目录，无需改动
+        // ============================================================
+        function buildTree(paths) {
+            const root = {};
+            paths.forEach(p => {
+                const parts = p.split('/');
+                let node = root;
+                for (let i = 0; i < parts.length; i++) {
+                    if (i === parts.length - 1) {
+                        if (!node._files) node._files = [];
+                        node._files.push(p);
+                    } else {
+                        if (!node[parts[i]]) node[parts[i]] = {};
+                        node = node[parts[i]];
+                    }
+                }
+            });
+            return root;
+        }
+
+        function renderTree(node, container) {
+            const ul = document.createElement('ul');
+            const keys = Object.keys(node).filter(k => k !== '_files').sort();
+            keys.forEach(key => {
+                const li = document.createElement('li');
+                const span = document.createElement('span');
+                span.className = 'folder';
+                span.textContent = '📁 ' + key;
+                li.appendChild(span);
+                const childDiv = document.createElement('div');
+                childDiv.className = 'hidden';
+                renderTree(node[key], childDiv);
+                li.appendChild(childDiv);
+                span.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const target = this.nextElementSibling;
+                    target.classList.toggle('hidden');
+                });
+                ul.appendChild(li);
+            });
+
+            if (node._files && node._files.length > 0) {
+                node._files.sort().forEach(p => {
+                    const li = document.createElement('li');
+                    li.className = 'file';
+                    const name = p.split('/').pop();
+                    const a = document.createElement('a');
+                    a.href = p;
+                    a.target = '_blank';
+                    a.textContent = '📄 ' + name;
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                });
+            }
+            container.appendChild(ul);
+        }
+
+        const root = buildTree(files);
+        renderTree(root, document.getElementById('tree-container'));
+    </script>
 </body>
 </html>
