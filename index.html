@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta>
     <title>📚 学习资料</title>
     <style>
         body { font-family: -apple-system, sans-serif; max-width: 820px; margin: 40px auto; padding: 0 20px; background: #f8fafc; }
@@ -36,75 +35,103 @@
 
     <script>
         // ============================================================
-        // 🔧 在这里列出你的所有资料（完整路径，从仓库根目录开始）
-        // 新增文件时，直接在数组里加一行即可
+        // 📂 树形数据：目录用对象 {}，文件用数组 []
+        // 新增文件时，只需要在对应目录的数组里加一个文件名即可
+        // 目录名支持任意嵌套，结构一目了然
         // ============================================================
-        const files = [
-            "数学/初等数学/立体几何/立体几何.html",
-            "数学/高等数学/微分方程/化归.html",
-               
-        ];
-
-        // ============================================================
-        // 以下代码自动构建树形目录，无需改动
-        // ============================================================
-        function buildTree(paths) {
-            const root = {};
-            paths.forEach(p => {
-                const parts = p.split('/');
-                let node = root;
-                for (let i = 0; i < parts.length; i++) {
-                    if (i === parts.length - 1) {
-                        if (!node._files) node._files = [];
-                        node._files.push(p);
-                    } else {
-                        if (!node[parts[i]]) node[parts[i]] = {};
-                        node = node[parts[i]];
-                    }
+        const tree = {
+            "数学": {
+                "初等数学": {
+                    "立体几何": [
+                        "立体几何.html"
+                    ]
+                },
+                "高等数学": {
+                    "微分方程": [
+                        "化归.html"
+                    ]
                 }
-            });
-            return root;
-        }
+            }
+        };
 
-        function renderTree(node, container) {
+        // ============================================================
+        // 以下为渲染引擎，无需改动
+        // ============================================================
+
+        /**
+         * 递归渲染树形结构
+         * @param {object|array} node  当前节点（对象=目录，数组=文件列表）
+         * @param {string}       path  当前路径前缀（用于拼接文件链接）
+         * @param {HTMLElement}  container  挂载点
+         */
+        function renderTree(node, path, container) {
             const ul = document.createElement('ul');
-            const keys = Object.keys(node).filter(k => k !== '_files').sort();
+
+            // 如果当前节点是数组 => 文件列表
+            if (Array.isArray(node)) {
+                node.sort().forEach(filename => {
+                    const li = document.createElement('li');
+                    li.className = 'file';
+                    const a = document.createElement('a');
+                    // 拼接完整路径：path + "/" + filename
+                    a.href = path + '/' + filename;
+                    a.target = '_blank';
+                    a.textContent = '📄 ' + filename;
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                });
+                container.appendChild(ul);
+                return;
+            }
+
+            // 当前节点是对象 => 目录（可能有子目录，也可能有 _files 文件列表）
+            const keys = Object.keys(node).sort();
+
+            // 先处理子目录（非 _files 的键）
             keys.forEach(key => {
+                if (key === '_files') return; // 文件列表单独处理
+                const value = node[key];
                 const li = document.createElement('li');
                 const span = document.createElement('span');
                 span.className = 'folder';
                 span.textContent = '📁 ' + key;
                 li.appendChild(span);
+
                 const childDiv = document.createElement('div');
-                childDiv.className = 'hidden';
-                renderTree(node[key], childDiv);
+                childDiv.className = 'hidden'; // 默认折叠
+                const newPath = path + '/' + key;
+                renderTree(value, newPath, childDiv);
                 li.appendChild(childDiv);
+
                 span.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const target = this.nextElementSibling;
                     target.classList.toggle('hidden');
                 });
+
                 ul.appendChild(li);
             });
 
-            if (node._files && node._files.length > 0) {
-                node._files.sort().forEach(p => {
+            // 再处理当前目录下的文件（如果有 _files）
+            if (node._files && Array.isArray(node._files)) {
+                node._files.sort().forEach(filename => {
                     const li = document.createElement('li');
                     li.className = 'file';
-                    const name = p.split('/').pop();
                     const a = document.createElement('a');
-                    a.href = p;
+                    a.href = path + '/' + filename;
                     a.target = '_blank';
-                    a.textContent = '📄 ' + name;
+                    a.textContent = '📄 ' + filename;
                     li.appendChild(a);
                     ul.appendChild(li);
                 });
             }
+
             container.appendChild(ul);
         }
 
-        const root = buildTree(files);
-        renderTree(root, document.getElementById('tree-container'));
+        // 启动渲染：从根路径 "" 开始
+        renderTree(tree, '', document.getElementById('tree-container'));
     </script>
+
 </body>
 </html>
