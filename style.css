@@ -114,3 +114,19 @@ li {
     transform: none !important;
     opacity: 0.6;
 }
+
+.stats {
+    background: #eef2f6;
+    padding: 8px 16px;
+    border-radius: 30px;
+    display: inline-block;
+    font-size: 0.9rem;
+    color: #1e293b;
+    margin-bottom: 16px;
+}
+
+.stats span {
+    font-weight: 700;
+    color: #2563eb;
+    font-size: 1.1rem;
+}

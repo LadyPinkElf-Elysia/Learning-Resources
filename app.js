@@ -21,7 +21,7 @@ export class LearningApp {
                 "微分方程": [
                     "化归.html"
                 ],
-                "不定积分":[]
+                "不定积分": []
             }
         },
         "物理": {
@@ -48,6 +48,7 @@ export class LearningApp {
         if (!container) return;
         container.innerHTML = '';
         this._renderNode(this.data, '', container);
+        this._updateStats();
     }
 
     _renderNode(node, path, container) {
@@ -64,9 +65,9 @@ export class LearningApp {
             const li = document.createElement('li');
             li.className = 'file';
             const a = document.createElement('a');
-            a.href = path ? path + '/' + name : name;
+            a.href = path ? `${path}/${name}` : name;
             a.target = '_blank';
-            a.textContent = '📄 ' + name;
+            a.textContent = `📄 ${name}`;
             li.appendChild(a);
             ul.appendChild(li);
         });
@@ -93,12 +94,12 @@ export class LearningApp {
         const li = document.createElement('li');
         const span = document.createElement('span');
         span.className = 'folder';
-        span.textContent = '📁 ' + folderName;
+        span.textContent = `📁 ${folderName}`;
         li.appendChild(span);
 
         const childDiv = document.createElement('div');
         childDiv.className = 'hidden';
-        const newPath = parentPath ? parentPath + '/' + folderName : folderName;
+        const newPath = parentPath ? `${parentPath}/${folderName}` : folderName;
         this._renderNode(childNode, newPath, childDiv);
         li.appendChild(childDiv);
 
@@ -129,6 +130,31 @@ export class LearningApp {
         }
     }
 
+    // ======================== 统计（新增） ==========================
+    _countFiles(node) {
+        if (Array.isArray(node)) {
+            return node.length;
+        }
+        let total = 0;
+        for (const key of Object.keys(node)) {
+            if (key === '_files') {
+                total += node._files.length;
+            } else {
+                total += this._countFiles(node[key]);
+            }
+        }
+        return total;
+    }
+
+    _updateStats() {
+        const countEl = document.querySelector('#file-count');
+        if (countEl) {
+            const total = this._countFiles(this.data);
+            countEl.textContent = total;
+        }
+    }
+
+
     // ======================== 核心：路径查找/创建 ==========================
 
     /**
@@ -141,7 +167,6 @@ export class LearningApp {
         let node = this.data;
         for (let i = 0; i < pathArray.length; i++) {
             const folder = pathArray[i];
-            const isLast = (i === pathArray.length - 1);
 
             if (node[folder] === undefined) {
                 if (autoCreate) {
@@ -150,11 +175,10 @@ export class LearningApp {
                     return null;
                 }
             } else if (Array.isArray(node[folder])) {
-                // 当前是文件数组，需要转为文件夹（保留原有文件）
-                const existingFiles = node[folder];
+                // ✅ 修复：复制数组，而不是直接引用
+                const existingFiles = node[folder].slice();  // 浅拷贝
                 node[folder] = { _files: existingFiles };
             }
-            // 进入下一层
             node = node[folder];
         }
         return node;
@@ -242,7 +266,9 @@ export class LearningApp {
 
             fileInput.addEventListener('change', function () {
                 if (this.files && this.files.length > 0) {
+
                     window.app.handleUpload(this.files, []);
+
                     this.value = '';
                 }
             });
