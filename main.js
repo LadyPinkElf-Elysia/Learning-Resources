@@ -181,47 +181,47 @@ class LearningApp {
 
     // ======================== 文件操作 ==========================
 
-    /** 手动添加文件 */
-    addFile(pathArray, filename) {
-        const node = this._getNodeAtPath(pathArray, true);
-        if (!node) return;
-        this._addFileToNode(node, filename);
-        this.render();
-    }
+    // /** 手动添加文件 */
+    // addFile(pathArray, filename) {
+    //     const node = this._getNodeAtPath(pathArray, true);
+    //     if (!node) return;
+    //     this._addFileToNode(node, filename);
+    //     this.render();
+    // }
 
-    /** 手动添加文件夹 */
-    addFolder(pathArray) {
-        this._getNodeAtPath(pathArray, true);
-        this.render();
-    }
+    // /** 手动添加文件夹 */
+    // addFolder(pathArray) {
+    //     this._getNodeAtPath(pathArray, true);
+    //     this.render();
+    // }
 
-    /**
-     * 处理用户选择的文件/文件夹
-     */
-    handleUpload(fileList, targetPath = []) {
-        const files = Array.from(fileList);
-        if (files.length === 0) return;
+    // /**
+    //  * 处理用户选择的文件/文件夹
+    //  */
+    // handleUpload(fileList, targetPath = []) {
+    //     const files = Array.from(fileList);
+    //     if (files.length === 0) return;
 
-        const fileEntries = [];
-        files.forEach(file => {
-            let relPath = file.webkitRelativePath || file.name;
-            let parts = relPath.split('/').filter(Boolean);
-            let fileName = parts.pop();
-            // 拼接目标路径（targetPath 是用户指定的前缀，目前默认空）
-            const fullParts = [...targetPath, ...parts];
-            fileEntries.push({ parts: fullParts, fileName });
-        });
+    //     const fileEntries = [];
+    //     files.forEach(file => {
+    //         let relPath = file.webkitRelativePath || file.name;
+    //         let parts = relPath.split('/').filter(Boolean);
+    //         let fileName = parts.pop();
+    //         // 拼接目标路径（targetPath 是用户指定的前缀，目前默认空）
+    //         const fullParts = [...targetPath, ...parts];
+    //         fileEntries.push({ parts: fullParts, fileName });
+    //     });
 
-        // 按路径分组，批量添加
-        fileEntries.forEach(({ parts, fileName }) => {
-            const node = this._getNodeAtPath(parts, true);
-            if (node) {
-                this._addFileToNode(node, fileName);
-            }
-        });
+    //     // 按路径分组，批量添加
+    //     fileEntries.forEach(({ parts, fileName }) => {
+    //         const node = this._getNodeAtPath(parts, true);
+    //         if (node) {
+    //             this._addFileToNode(node, fileName);
+    //         }
+    //     });
 
-        this.render();
-    }
+    //     this.render();
+    // }
 
     // ======================== UI 绑定 ==========================
 
