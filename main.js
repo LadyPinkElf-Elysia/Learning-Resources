@@ -1,4 +1,4 @@
-import { LearningApp } from './app.js'
-const app = new LearningApp();
+import { App } from './app.js'
+const app = new App();
 
 // window.app=app
