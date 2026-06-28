@@ -1,7 +1,7 @@
 /**
  * 渲染引擎
  * 职责：将树形数据递归渲染为 DOM 树。
- * 只读数据，不修改数据。
+ * 支持传入 fileUrlMap，如果有临时 URL 则使用，否则使用相对路径。
  */
 export class RenderEngine {
     constructor(containerSelector) {
@@ -11,31 +11,39 @@ export class RenderEngine {
     /**
      * 渲染整棵树
      * @param {Object} data - 树形数据根节点
+     * @param {Object} fileUrlMap - 路径 → Blob URL 的映射
      */
-    render(data) {
+    render(data, fileUrlMap = {}) {
         const container = document.querySelector(this.containerSelector);
         if (!container) return;
         container.innerHTML = '';
-        this._renderNode(data, '', container);
+        this._renderNode(data, '', container, fileUrlMap);
     }
 
-    /** 递归调度器 */
-    _renderNode(node, path, container) {
+    _renderNode(node, path, container, fileUrlMap) {
         if (Array.isArray(node)) {
-            this._renderFileList(node, path, container);
+            this._renderFileList(node, path, container, fileUrlMap);
         } else {
-            this._renderDirectory(node, path, container);
+            this._renderDirectory(node, path, container, fileUrlMap);
         }
     }
 
-    /** 渲染文件列表 */
-    _renderFileList(files, path, container) {
+    _renderFileList(files, path, container, fileUrlMap) {
         const ul = document.createElement('ul');
         files.slice().sort().forEach(name => {
             const li = document.createElement('li');
             li.className = 'file';
             const a = document.createElement('a');
-            a.href = path ? `${path}/${name}` : name;
+
+            const fullPath = path ? `${path}/${name}` : name;
+
+            if (fileUrlMap[fullPath]) {
+                a.href = fileUrlMap[fullPath];
+                // 不加 download，让浏览器自行决定（PDF 预览、图片显示、其他下载）
+            } else {
+                a.href = fullPath;
+            }
+
             a.target = '_blank';
             a.textContent = `📄 ${name}`;
             li.appendChild(a);
@@ -44,24 +52,22 @@ export class RenderEngine {
         container.appendChild(ul);
     }
 
-    /** 渲染文件夹 */
-    _renderDirectory(node, path, container) {
+    _renderDirectory(node, path, container, fileUrlMap) {
         const ul = document.createElement('ul');
         const keys = Object.keys(node).filter(k => k !== '_files').sort();
 
         keys.forEach(key => {
-            const li = this._createFolderItem(key, node[key], path);
+            const li = this._createFolderItem(key, node[key], path, fileUrlMap);
             ul.appendChild(li);
         });
 
         if (node._files && Array.isArray(node._files)) {
-            this._renderFileList(node._files, path, ul);
+            this._renderFileList(node._files, path, ul, fileUrlMap);
         }
         container.appendChild(ul);
     }
 
-    /** 创建单个文件夹 DOM */
-    _createFolderItem(folderName, childNode, parentPath) {
+    _createFolderItem(folderName, childNode, parentPath, fileUrlMap) {
         const li = document.createElement('li');
         const span = document.createElement('span');
         span.className = 'folder';
@@ -71,7 +77,7 @@ export class RenderEngine {
         const childDiv = document.createElement('div');
         childDiv.className = 'hidden';
         const newPath = parentPath ? `${parentPath}/${folderName}` : folderName;
-        this._renderNode(childNode, newPath, childDiv);
+        this._renderNode(childNode, newPath, childDiv, fileUrlMap);
         li.appendChild(childDiv);
 
         span.addEventListener('click', (e) => {
@@ -82,7 +88,6 @@ export class RenderEngine {
         return li;
     }
 
-    /** 展开/折叠 + 空目录提示 */
     _toggleFolder(container) {
         const isHidden = container.classList.contains('hidden');
         if (isHidden) {

@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>📚 学习资料</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
     <h1>📚 学习资料库</h1>
-    <p class="sub">点击 📁 文件夹展开 / 收起 &nbsp;·&nbsp; </p>
+    <p class="sub">点击 📁 文件夹展开 / 收起 &nbsp;·&nbsp;</p>
     <hr />
 
-    <!-- <div class="toolbar">
-        <button id="addFileBtn" class="upload-btn" >➕ 添加文件或文件夹</button>
-        <input type="file" id="fileInput" style="display:none;" webkitdirectory multiple />
-        <span style="color:#94a3b8; font-size:0.85rem;">（添加功能暂未开放）</span>
-    </div> -->
+    <p>共 <span id="file-count">0</span> 份资料</p>
 
-    <div class="stats" id="stats-container">
-        📄 目前已收录 <span id="file-count">0</span> 个文件
-    </div>
+    <!-- <div class="toolbar">
+        <button id="addFileBtn" class="upload-btn">➕ 添加文件或文件夹</button>
+        <input type="file" id="fileInput" style="display:none;" webkitdirectory multiple />
+        <span style="color:#94a3b8; font-size:0.85rem;">（支持选择单个文件、多个文件或整个文件夹）</span>
+    </div> -->
 
     <div id="tree-container"></div>
 
@@ -34,5 +30,4 @@
     <script type="module" src="main.js"></script>
 
 </body>
-
 </html>
