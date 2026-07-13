@@ -1,39 +1,65 @@
+// src/app.js
 import { DataManager } from './core/DataManager.js';
 import { RenderEngine } from './core/RenderEngine.js';
 import { StatsEngine } from './core/StatsEngine.js';
 import { FileStorage } from './core/FileStorage.js';
 
-/**
- * 主应用类（组合器）
- * 职责：持有 DataManager、RenderEngine、FileStorage，协调它们完成工作。
- * 负责 UI 事件绑定（按钮点击等）。
- */
+const DEFAULT_DATA = {
+    "数学": {
+        "初等数学": {
+            "函数": {
+                "抽象函数": ["函数.html"],
+                "导数": [],
+                "三角函数": ["三角函数.html"]
+            },
+            "立体几何": ["立体几何.html"],
+            "解三角": [],
+            "数列": ["数列.html"],
+            "不等式": [],
+            "圆锥曲线": [],
+            "概率": [],
+        },
+        "高等数学": {
+            "微分方程": ["化归.html"],
+            "不定积分": []
+        }
+    },
+    "物理": {
+        "电磁学": {
+            "电学": [],
+            "磁学": [],
+            "电磁感应": []
+        },
+        "热力学": [],
+        "运动学": []
+    }
+};
+
 export class App {
     constructor() {
-        this.dataManager = new DataManager();
-        this.renderEngine = new RenderEngine('#tree-container');
-        this.statsEngine = StatsEngine;
-        this.fileStorage = new FileStorage();
+        this.data = DEFAULT_DATA;
+        this.blobStore = {};
+        
+        // 缓存 DOM 节点，避免每次都去 document.querySelector
+        this.container = document.querySelector('#tree-container');
+        this.statsEl = document.querySelector('#file-count');
+        this.fileInput = document.querySelector('#fileInput');
+        this.addBtn = document.querySelector('#addFileBtn');
 
         this._bindUI();
     }
 
-    /** 渲染入口（外部调用） */
     render() {
-        const data = this.dataManager.getData();
-        const urlMap = this.fileStorage.getUrlMap();
-        this.renderEngine.render(data, urlMap);
+        // 传入缓存的 DOM 节点，直接渲染
+        RenderEngine.render(this.container, this.data, this.blobStore);
         this._updateStats();
     }
 
-    /** 更新统计显示 */
     _updateStats() {
-        const data = this.dataManager.getData();
-        const total = this.statsEngine.countFiles(data);
-        this.statsEngine.updateDisplay('#file-count', total);
+        const total = StatsEngine.countFiles(this.data);
+        StatsEngine.updateDisplay(this.statsEl, total);
     }
 
-    /** 绑定 UI 事件 */
     _bindUI() {
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => this._bindUIInternal());
@@ -45,48 +71,37 @@ export class App {
     _bindUIInternal() {
         this.render();
 
-        const fileInput = document.querySelector('#fileInput');
-        const addBtn = document.querySelector('#addFileBtn');
+        if (this.addBtn && this.fileInput) {
+            this.addBtn.addEventListener('click', () => this.fileInput.click());
 
-        if (addBtn && fileInput) {
-            addBtn.addEventListener('click', () => fileInput.click());
-
-            fileInput.addEventListener('change', (e) => {
+            this.fileInput.addEventListener('change', (e) => {
                 const files = e.target.files;
                 if (files && files.length > 0) {
-                    // 1. 更新树形结构
-                    const added = this.dataManager.handleUpload(files, []);
+                    // DataManager 现在返回全新的数据对象
+                    this.data = DataManager.handleUpload(this.data, files);
+                    this.blobStore = FileStorage.addFiles(this.blobStore, files);
                     
-                    // 2. 存储文件内容（生成 Blob URL）
-                    const stored = this.fileStorage.addFiles(files);
-
-                    // 3. 重新渲染
                     this.render();
-
                     e.target.value = '';
                 }
             });
         }
     }
 
-    // ========== 预留接口（手动添加） ==========
     addFile(pathArray, filename) {
-        const node = this.dataManager.getNodeAtPath(pathArray, true);
-        if (node) {
-            this.dataManager.addFileToNode(node, filename);
-            this.render();
-        }
-    }
-
-    addFolder(pathArray) {
-        this.dataManager.getNodeAtPath(pathArray, true);
+        this.data = DataManager.addFileToNode(this.data, pathArray, filename);
         this.render();
     }
 
-    // ========== 清理（组件卸载时调用） ==========
+    addFolder(pathArray) {
+        DataManager.getNodeAtPath(this.data, pathArray, true);
+        this.render();
+    }
+
     destroy() {
-        this.fileStorage.revokeAll();
-        this.renderEngine = null;
-        this.dataManager = null;
+        this.blobStore = FileStorage.revokeAll(this.blobStore);
+        this.data = null;
+        this.container = null;
+        this.statsEl = null;
     }
 }

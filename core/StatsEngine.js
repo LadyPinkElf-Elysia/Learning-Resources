@@ -1,32 +1,28 @@
-/**
- * 统计引擎
- * 职责：递归统计文件数量，更新统计显示。
- * 纯函数风格，不持有状态。
- */
+// core/StatsEngine.js
 export class StatsEngine {
-    /**
-     * 递归统计文件总数
-     */
     static countFiles(node) {
-        if (Array.isArray(node)) {
-            return node.length;
-        }
         let total = 0;
-        for (const key of Object.keys(node)) {
-            if (key === '_files') {
-                total += node._files.length;
+        const stack = [node];
+
+        // 使用循环而非递归，避免层级过深导致栈溢出
+        while (stack.length > 0) {
+            const current = stack.pop();
+            if (Array.isArray(current)) {
+                total += current.length;
             } else {
-                total += this.countFiles(node[key]);
+                for (const key of Object.keys(current)) {
+                    if (key === '_files') {
+                        total += current._files.length;
+                    } else {
+                        stack.push(current[key]);
+                    }
+                }
             }
         }
         return total;
     }
 
-    /**
-     * 更新页面统计显示
-     */
-    static updateDisplay(selector, total) {
-        const el = document.querySelector(selector);
+    static updateDisplay(el, total) {
         if (el) {
             el.textContent = total;
         }
