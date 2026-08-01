@@ -19752,7 +19752,17 @@
                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
                                  class="strut" style="height:0.4306em;"></span><span
                                  class="mord mathnormal">m</span></span></span></span> 次，但系数是复数。<br>
-                     把它写成 <strong>实部多项式 + i·虚部多项式</strong>：</p>
+                     把它写成 <strong>实部多项式 + <span class="katex"><span class="katex-mathml"><math
+                                 xmlns="http://www.w3.org/1998/Math/MathML">
+                                 <semantics>
+                                    <mrow>
+                                       <mi>i</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">i</annotation>
+                                 </semantics>
+                              </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.6595em;"></span><span
+                                    class="mord mathnormal">i</span></span></span></span>·虚部多项式</strong>：</p>
                   <span class="katex-display"><span class="katex"><span class="katex-mathml"><math
                               xmlns="http://www.w3.org/1998/Math/MathML" display="block">
                               <semantics>
@@ -21591,11 +21601,11 @@
                                     <mo separator="true">,</mo>
                                     <mi>b</mi>
                                     <mo>∈</mo>
-                                    <mi mathvariant="double-struck">R</mi>
+                                    <mi mathvariant="normal">R</mi>
                                     <mo separator="true">,</mo>
                                  </mrow>
                                  <annotation encoding="application/x-tex">y'' + a y' + b y = 0, \quad a,b \in
-                                    \mathbb{R},</annotation>
+                                    \mathrm{R},</annotation>
                               </semantics>
                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
                                  class="strut" style="height:0.9963em;vertical-align:-0.1944em;"></span><span
@@ -21634,8 +21644,8 @@
                                  class="mord mathnormal">b</span><span class="mspace"
                                  style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace"
                                  style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut"
-                                 style="height:0.8833em;vertical-align:-0.1944em;"></span><span
-                                 class="mord mathbb">R</span><span class="mpunct">,</span></span></span></span></span>
+                                 style="height:0.8778em;vertical-align:-0.1944em;"></span><span
+                                 class="mord mathrm">R</span><span class="mpunct">,</span></span></span></span></span>
                   <p>目标：求出所有函数 <span class="katex"><span class="katex-mathml"><math
                               xmlns="http://www.w3.org/1998/Math/MathML">
                               <semantics>
@@ -24541,10 +24551,10 @@
                         </p>
                         <blockquote>
                            <p>为什么这么说？<br>
-                              因为<strong>非齐次的解</strong>和<strong>齐次的解</strong>会有一个<strong>差值</strong>，而这个<strong>差值就决定了它是一个非齐次解</strong>，当它趋近于齐次解时，就会导致<strong>差值趋近于0</strong><br>
+                              因为两个不同的<strong>齐次的解</strong>会有一个<strong>差值</strong>，而这个<strong>差值就决定了它是两个不同的齐次解</strong>，当两个不同齐次解趋近于相同时，就会导致<strong>差值趋近于0</strong><br>
                               因为差值极限是零，所以它的变化非常微小，为了把这种变化放大<br>
                               所以我们用了一个同样趋近于零的分母，把这种变化放大了，也就是让微小变化变成一个不可忽视的变化，即研究变化的变化，也就是<strong>变化率</strong>，而<strong>求变化率就是求导</strong><br>
-                              <strong>这个变化率就是决定了这个非齐次解是一个非齐次，而不是齐次的关键</strong>
+                              <strong>这个变化率就是一个齐次解，是一个异于那个相同齐次解的解</strong>
                            </p>
                         </blockquote>
                         <blockquote>
@@ -25453,9 +25463,22 @@
                                              <mi>β</mi>
                                              <mi>x</mi>
                                              <mo stretchy="false">)</mo>
+                                             <mspace width="1em"></mspace>
+                                             <mo stretchy="false">(</mo>
+                                             <msub>
+                                                <mi>C</mi>
+                                                <mn>1</mn>
+                                             </msub>
+                                             <mo separator="true">,</mo>
+                                             <msub>
+                                                <mi>C</mi>
+                                                <mn>2</mn>
+                                             </msub>
+                                             <mtext>为任意常数</mtext>
+                                             <mo stretchy="false">)</mo>
                                           </mrow>
                                           <annotation encoding="application/x-tex">y = e^{\alpha x}(C_1 \cos \beta x +
-                                             C_2 \sin \beta x)</annotation>
+                                             C_2 \sin \beta x) \quad(C_1, C_2 \mathrm{为任意常数})</annotation>
                                        </semantics>
                                     </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
                                           class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span
@@ -25507,21 +25530,173 @@
                                           class="mop">sin</span><span class="mspace"
                                           style="margin-right:0.1667em;"></span><span class="mord mathnormal"
                                           style="margin-right:0.0528em;">β</span><span
-                                          class="mord mathnormal">x</span><span
+                                          class="mord mathnormal">x</span><span class="mclose">)</span><span
+                                          class="mspace" style="margin-right:1em;"></span><span
+                                          class="mopen">(</span><span class="mord"><span class="mord mathnormal"
+                                             style="margin-right:0.0715em;">C</span><span class="msupsub"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                      style="height:0.3011em;"><span
+                                                         style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                               class="mord mtight">1</span></span></span></span><span
+                                                      class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                      class="vlist"
+                                                      style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                          class="mpunct">,</span><span class="mspace"
+                                          style="margin-right:0.1667em;"></span><span class="mord"><span
+                                             class="mord mathnormal" style="margin-right:0.0715em;">C</span><span
+                                             class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                      class="vlist" style="height:0.3011em;"><span
+                                                         style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                               class="mord mtight">2</span></span></span></span><span
+                                                      class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                      class="vlist"
+                                                      style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                          class="mord"><span class="mord mathrm cjk_fallback">为任意常数</span></span><span
                                           class="mclose">)</span></span></span></span></span>
                         </p>
+                        <blockquote>
+                           <p>注：根据题目场景，<span class="katex"><span class="katex-mathml"><math
+                                       xmlns="http://www.w3.org/1998/Math/MathML">
+                                       <semantics>
+                                          <mrow>
+                                             <msub>
+                                                <mi>C</mi>
+                                                <mn>1</mn>
+                                             </msub>
+                                             <mo separator="true">,</mo>
+                                             <msub>
+                                                <mi>C</mi>
+                                                <mn>2</mn>
+                                             </msub>
+                                          </mrow>
+                                          <annotation encoding="application/x-tex">C_1, C_2</annotation>
+                                       </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                          class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span
+                                          class="mord"><span class="mord mathnormal"
+                                             style="margin-right:0.0715em;">C</span><span class="msupsub"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                      style="height:0.3011em;"><span
+                                                         style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                               class="mord mtight">1</span></span></span></span><span
+                                                      class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                      class="vlist"
+                                                      style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                          class="mpunct">,</span><span class="mspace"
+                                          style="margin-right:0.1667em;"></span><span class="mord"><span
+                                             class="mord mathnormal" style="margin-right:0.0715em;">C</span><span
+                                             class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                      class="vlist" style="height:0.3011em;"><span
+                                                         style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                               class="mord mtight">2</span></span></span></span><span
+                                                      class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                      class="vlist"
+                                                      style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>
+                              为任意实数或者任意复数，若题目要求实解，则<span class="katex"><span class="katex-mathml"><math
+                                       xmlns="http://www.w3.org/1998/Math/MathML">
+                                       <semantics>
+                                          <mrow>
+                                             <msub>
+                                                <mi>C</mi>
+                                                <mn>1</mn>
+                                             </msub>
+                                             <mo separator="true">,</mo>
+                                             <msub>
+                                                <mi>C</mi>
+                                                <mn>2</mn>
+                                             </msub>
+                                          </mrow>
+                                          <annotation encoding="application/x-tex">C_1, C_2</annotation>
+                                       </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                          class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span
+                                          class="mord"><span class="mord mathnormal"
+                                             style="margin-right:0.0715em;">C</span><span class="msupsub"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                      style="height:0.3011em;"><span
+                                                         style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                               class="mord mtight">1</span></span></span></span><span
+                                                      class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                      class="vlist"
+                                                      style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                          class="mpunct">,</span><span class="mspace"
+                                          style="margin-right:0.1667em;"></span><span class="mord"><span
+                                             class="mord mathnormal" style="margin-right:0.0715em;">C</span><span
+                                             class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                      class="vlist" style="height:0.3011em;"><span
+                                                         style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                               class="mord mtight">2</span></span></span></span><span
+                                                      class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                      class="vlist"
+                                                      style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>为实数，若题目允许复数解，则<span
+                                 class="katex"><span class="katex-mathml"><math
+                                       xmlns="http://www.w3.org/1998/Math/MathML">
+                                       <semantics>
+                                          <mrow>
+                                             <msub>
+                                                <mi>C</mi>
+                                                <mn>1</mn>
+                                             </msub>
+                                             <mo separator="true">,</mo>
+                                             <msub>
+                                                <mi>C</mi>
+                                                <mn>2</mn>
+                                             </msub>
+                                          </mrow>
+                                          <annotation encoding="application/x-tex">C_1, C_2</annotation>
+                                       </semantics>
+                                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                          class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span
+                                          class="mord"><span class="mord mathnormal"
+                                             style="margin-right:0.0715em;">C</span><span class="msupsub"><span
+                                                class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                                      style="height:0.3011em;"><span
+                                                         style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                               class="mord mtight">1</span></span></span></span><span
+                                                      class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                      class="vlist"
+                                                      style="height:0.15em;"><span></span></span></span></span></span></span><span
+                                          class="mpunct">,</span><span class="mspace"
+                                          style="margin-right:0.1667em;"></span><span class="mord"><span
+                                             class="mord mathnormal" style="margin-right:0.0715em;">C</span><span
+                                             class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span
+                                                      class="vlist" style="height:0.3011em;"><span
+                                                         style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span
+                                                            class="pstrut" style="height:2.7em;"></span><span
+                                                            class="sizing reset-size6 size3 mtight"><span
+                                                               class="mord mtight">2</span></span></span></span><span
+                                                      class="vlist-s">​</span></span><span class="vlist-r"><span
+                                                      class="vlist"
+                                                      style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>为复数
+                           </p>
+                        </blockquote>
                      </li>
                   </ol>
-                  <p>对于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
-                              <semantics>
-                                 <mrow>
-                                    <mi>n</mi>
-                                 </mrow>
-                                 <annotation encoding="application/x-tex">n</annotation>
-                              </semantics>
-                           </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
-                                 class="strut" style="height:0.4306em;"></span><span
-                                 class="mord mathnormal">n</span></span></span></span> 阶常系数线性齐次方程：</p>
+                  <p><strong>对于 <span class="katex"><span class="katex-mathml"><math
+                                 xmlns="http://www.w3.org/1998/Math/MathML">
+                                 <semantics>
+                                    <mrow>
+                                       <mi>n</mi>
+                                    </mrow>
+                                    <annotation encoding="application/x-tex">n</annotation>
+                                 </semantics>
+                              </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                    class="strut" style="height:0.4306em;"></span><span
+                                    class="mord mathnormal">n</span></span></span></span> 阶常系数线性齐次方程：</strong></p>
                   <span class="katex-display"><span class="katex"><span class="katex-mathml"><math
                               xmlns="http://www.w3.org/1998/Math/MathML" display="block">
                               <semantics>
@@ -36647,10 +36822,10 @@
                                        <mo separator="true">,</mo>
                                        <mi>b</mi>
                                        <mo>∈</mo>
-                                       <mi mathvariant="double-struck">R</mi>
+                                       <mi mathvariant="normal">R</mi>
                                     </mrow>
                                     <annotation encoding="application/x-tex">y'' + ay' + by = f(x), \quad a,b \in
-                                       \mathbb{R}</annotation>
+                                       \mathrm{R}</annotation>
                                  </semantics>
                               </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
                                     class="strut" style="height:0.9963em;vertical-align:-0.1944em;"></span><span
@@ -36695,8 +36870,8 @@
                                     class="mspace" style="margin-right:0.2778em;"></span><span
                                     class="mrel">∈</span><span class="mspace"
                                     style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut"
-                                    style="height:0.6889em;"></span><span
-                                    class="mord mathbb">R</span></span></span></span></span>
+                                    style="height:0.6833em;"></span><span
+                                    class="mord mathrm">R</span></span></span></span></span>
                   </p>
                   <p>求解步骤：</p>
                   <ol>
