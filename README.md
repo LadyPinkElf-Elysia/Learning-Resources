@@ -47,3 +47,56 @@ Learning-Resources/
 ├── package.json
 ├── tsconfig.json
 └── vite.config.ts
+```
+
+## 🚀 本地运行
+
+1. **克隆仓库**
+   ```bash
+   git clone git@github.com:你的用户名/仓库名.git
+   cd 仓库名
+   ```
+
+2. **安装依赖**
+   ```bash
+   npm install
+   # 或者 pnpm install
+   ```
+
+3. **启动开发服务器**
+   ```bash
+   npm run dev
+   ```
+   打开浏览器访问 `http://localhost:5173` 即可。
+
+## 📖 如何添加新的学习资料？
+
+本项目的核心工作流如下：
+
+1. **编写与导出**：在你的笔记软件（如 Typora, Obsidian, markdown-preview-enhanced）中写好 `.md` 源文件，并将其**导出为独立的 `.html` 文件**。
+2. **放置文件**：将导出的 `.html`（与其关联的图片文件夹）放入 `public/docs/` 下的对应分类目录中。例如：
+   ```text
+   public/docs/
+   └── 大学/
+       └── 高等数学/
+           └── 微分方程/
+               └── 化归.html
+   ```
+   *(注：扫描脚本会自动忽略 `.md` 源文件以及 `图`、`images` 等图片目录)*
+3. **重新构建**：
+   ```bash
+   npm run build
+   ```
+   或者本地直接 `npm run dev`。项目会自动运行 `scripts/scan-docs.js`，更新树状目录。
+
+## ☁️ 部署
+
+本项目已配置好适配 **Cloudflare Pages** 或 **Vercel** 的自动构建。
+
+- **构建命令**：`npm run build` (或 `pnpm run build`)
+- **输出目录**：`dist`
+- **环境变量**：建议在部署平台设置 `NODE_VERSION = 20`，以保证扫描脚本正常运行。
+
+## 📄 许可证
+
+本项目基于 [MIT License](https://opensource.org/licenses/MIT) 开源。资料内容仅供个人学习交流使用。

@@ -7,7 +7,7 @@ const ROOT = path.resolve(__dirname, "..")
 const DOCS_DIR = path.join(ROOT, "public", "docs")
 const OUT_FILE = path.join(ROOT, "src", "data", "docs-paths.json")
 
-const IGNORE_DIRS = ["图"]
+const IGNORE_DIRS = ["图","images"]
 
 const walk = async (dir, baseDir) => {
     const results = []
