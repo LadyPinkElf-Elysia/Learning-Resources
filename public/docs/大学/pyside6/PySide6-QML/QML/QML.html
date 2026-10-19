@@ -1,0 +1,1797 @@
+<!DOCTYPE html><html><head>
+      <title>QML</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-details{margin:0;padding:0;border:none}.markdown-preview .md-toc summary.md-toc-link-wrapper{cursor:pointer;list-style-position:outside}.markdown-preview .md-toc summary.md-toc-link-wrapper::marker{font-size:.85em}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='0']{margin-left:12px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='1']{margin-left:28px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='2']{margin-left:44px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='3']{margin-left:60px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='4']{margin-left:76px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='5']{margin-left:80px}.markdown-preview a.tag,.markdown-preview a.tag:active,.markdown-preview a.tag:link,.markdown-preview a.tag:visited,.markdown-preview span.tag:not(.token){display:inline-block;background-color:var(--vscode-badge-background,rgba(127,127,127,.18));color:var(--vscode-badge-foreground,currentColor);border-radius:2em;font-size:.85em;font-weight:500;padding:.05em .55em;line-height:1.5;white-space:nowrap;text-decoration:none;text-shadow:none;box-shadow:none;transition:background-color .12s ease,opacity .12s ease}.markdown-preview a.tag{cursor:pointer}.markdown-preview a.tag:focus,.markdown-preview a.tag:hover{background-color:var(--vscode-badge-background,rgba(127,127,127,.32));color:var(--vscode-badge-foreground,currentColor);opacity:.85;text-decoration:none;outline:0}.markdown-preview .wikilink-embed-content{border-left:3px solid var(--vscode-textBlockQuote-border,rgba(128,128,128,.3));background:var(--vscode-textBlockQuote-background,rgba(128,128,128,.05));margin:.5em 0;padding:.5em .75em;border-radius:0 3px 3px 0}.markdown-preview .wikilink-embed-content.wikilink-embed-error{border-left-color:var(--vscode-errorForeground,#cf222e);color:var(--vscode-errorForeground,#cf222e);font-style:italic;opacity:.8}.markdown-preview .wikilink-embed-content h1:first-child,.markdown-preview .wikilink-embed-content h2:first-child,.markdown-preview .wikilink-embed-content h3:first-child,.markdown-preview .wikilink-embed-content h4:first-child,.markdown-preview .wikilink-embed-content h5:first-child,.markdown-preview .wikilink-embed-content h6:first-child{margin-top:.25em}.markdown-preview .wikilink-embed-content .wikilink-embed-content{margin:.25em 0;padding:.25em .5em}.markdown-preview .block-id{display:none}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));border:4px solid var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));background-clip:content-box}.scrollbar-style::-webkit-scrollbar-thumb:hover{background-color:var(--vscode-scrollbarSlider-hoverBackground,rgba(120,120,120,.66))}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));border:4px solid var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb:hover{background-color:var(--vscode-scrollbarSlider-hoverBackground,rgba(120,120,120,.66))}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-details{margin:0;padding:0;border:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='0']{padding-left:0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='1']{padding-left:16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='2']{padding-left:32px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='3']{padding-left:48px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='4']{padding-left:64px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='5']{padding-left:80px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script>
+    </head>
+    <body for="html-export">
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="qml-学习完全手册pyside6-整合版">QML 学习完全手册（PySide6 整合版） </h1>
+<blockquote>
+<p>QML 是 Qt 推出的<strong>声明式 UI 语言</strong>，专门用于设计流畅、动画丰富的界面。它与 Python（PySide6）配合，形成 <strong>“前端 QML + 后端 Python”</strong> 的黄金组合。本手册面向学生，提供最常用组件的用法、参数解释和实战示例，目标直指<strong>桌面宠物</strong>项目开发。</p>
+</blockquote>
+<hr>
+<h2 id="-目录">📖 目录 </h2>
+<ol>
+<li><a href="#1-qml-%E6%A0%B8%E5%BF%83%E8%AF%AD%E6%B3%95">QML 核心语法</a></li>
+<li><a href="#2-%E5%9F%BA%E7%A1%80%E5%85%83%E7%B4%A0">基础元素</a></li>
+<li><a href="#3-%E4%BA%A4%E4%BA%92%E6%8E%A7%E4%BB%B6">交互控件</a></li>
+<li><a href="#4-%E5%B8%83%E5%B1%80%E4%B8%8E%E5%AE%9A%E4%BD%8D">布局与定位</a></li>
+<li><a href="#5-%E4%BF%A1%E5%8F%B7%E4%B8%8E%E4%BA%8B%E4%BB%B6">信号与事件</a></li>
+<li><a href="#6-%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F">动画系统</a></li>
+<li><a href="#7-%E5%88%97%E8%A1%A8%E6%A8%A1%E5%9E%8B%E4%B8%8E%E8%A7%86%E5%9B%BE">列表模型与视图</a></li>
+<li><a href="#8-%E4%B8%8E-pyside6-%E6%95%B4%E5%90%88">与 PySide6 整合</a></li>
+<li><a href="#9-%E6%A1%8C%E9%9D%A2%E5%AE%A0%E7%89%A9%E5%BF%85%E5%A4%87%E6%8A%80%E5%B7%A7">桌面宠物必备技巧</a></li>
+<li><a href="#10-%E5%B7%A5%E5%85%B7%E4%B8%8E%E8%B0%83%E8%AF%95">工具与调试</a></li>
+<li><a href="#11-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E9%80%9F%E6%9F%A5">常见问题速查</a></li>
+</ol>
+<hr>
+<h2 id="1-qml-核心语法">1. QML 核心语法 </h2>
+<h3 id="-关于-import-版本的说明">📌 关于 import 版本的说明 </h3>
+<p>PySide6 内置的 Qt 版本通常是 6.x。你可以在 Python 中执行以下命令查看版本：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-import">import</span> PySide6<span class="token punctuation">.</span>QtCore
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>PySide6<span class="token punctuation">.</span>QtCore<span class="token punctuation">.</span>__version__<span class="token punctuation">)</span>
+</code></pre><p>如果你的版本是 <strong>6.4+</strong>，建议将本文档中的 <code>2.15</code> 替换为 <code>6.0</code> 或 <code>6.2</code>（如 <code>import QtQuick 6.0</code>）。如果使用 <code>2.15</code> 报错，换成 <code>6.0</code> 即可。</p>
+<hr>
+<h3 id="11-声明对象">1.1 声明对象 </h3>
+<p>QML 使用 <strong>花括号 <code>{}</code></strong> 定义对象，<strong>属性名: 值</strong> 来设定属性。</p>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token keyword keyword-import">import</span> QtQuick 6.0
+
+<span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">200</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">100</span></span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"red"</span></span>
+<span class="token punctuation">}</span>
+</code></pre><table>
+<thead>
+<tr>
+<th>语法元素</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>import</code></td>
+<td>导入模块（必须），版本号与 Qt 版本对应</td>
+</tr>
+<tr>
+<td><code>Rectangle</code></td>
+<td>矩形元素，可设置宽高、颜色、边框等</td>
+</tr>
+<tr>
+<td><code>属性: 值</code></td>
+<td>冒号 <code>:</code> 表示属性绑定（不是等号），值可以是数字、字符串、颜色名等</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="12-属性绑定property-binding">1.2 属性绑定（Property Binding） </h3>
+<p>属性值可以依赖其他属性，且<strong>动态更新</strong>：</p>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent<span class="token punctuation">.</span><span class="token property-access">width</span> <span class="token operator">*</span> <span class="token number">0.5</span>   <span class="token comment">// 宽度始终为父级的一半</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">width <span class="token operator">*</span> <span class="token number">0.75</span>        <span class="token comment">// 高度随宽度变化，保持 4:3</span></span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent<span class="token punctuation">.</span><span class="token property-access">color</span>         <span class="token comment">// 颜色跟随父级</span></span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h3 id="️-致命陷阱绑定-vs-赋值">⚠️ 致命陷阱：绑定（<code>:</code>） vs 赋值（<code>=</code>） </h3>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>含义</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>属性: 值</code>（冒号）</td>
+<td><strong>永久绑定</strong></td>
+<td>右边变了，左边自动更新。<strong>推荐用于初始化。</strong></td>
+</tr>
+<tr>
+<td><code>属性 = 值</code>（等号）</td>
+<td><strong>一次性赋值</strong></td>
+<td>仅用于 <strong>JavaScript 代码块内部</strong>（如 <code>onClicked: { ... }</code>），会<strong>永久破坏</strong>之前的绑定！</td>
+</tr>
+</tbody>
+</table>
+<p>❌ <strong>错误示例（绑定被破坏）</strong>：</p>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent<span class="token punctuation">.</span><span class="token property-access">width</span> <span class="token operator">*</span> <span class="token number">0.5</span>  <span class="token comment">// 绑定：宽度随父窗口变化</span></span>
+    <span class="token class-name">MouseArea</span> <span class="token punctuation">{</span>
+        <span class="token property">anchors.fill</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+        <span class="token property">onClicked</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+            width <span class="token operator">=</span> <span class="token number">200</span>        <span class="token comment">// 等号！这次点击后，width 变成固定值 200，</span>
+                               <span class="token comment">// 再也不会随父窗口变化了！</span>
+        <span class="token punctuation">}</span></span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>✅ <strong>正确做法</strong>：如果是临时改变尺寸，应该使用<strong>动画</strong>（<code>PropertyAnimation</code>）或<strong>状态切换</strong>（<code>State</code>），而不是用 <code>=</code> 粗暴赋值。</p>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent<span class="token punctuation">.</span><span class="token property-access">width</span> <span class="token operator">*</span> <span class="token number">0.5</span></span>
+    <span class="token class-name">MouseArea</span> <span class="token punctuation">{</span>
+        <span class="token property">anchors.fill</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+        <span class="token property">onClicked</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+            <span class="token comment">// 用动画改变宽度（不会破坏绑定）</span>
+            animation<span class="token punctuation">.</span><span class="token method function property-access">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span></span>
+    <span class="token punctuation">}</span>
+    <span class="token class-name">PropertyAnimation</span> <span class="token punctuation">{</span>
+        <span class="token property">id</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">animation</span>
+        <span class="token property">target</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+        <span class="token property">property</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"width"</span></span>
+        <span class="token property">to</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">200</span></span>
+        <span class="token property">duration</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">300</span></span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h3 id="13-id标识符">1.3 id（标识符） </h3>
+<p>给元素起一个唯一名字，方便在其他地方引用：</p>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+    <span class="token property">id</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">rect</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">100</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">100</span></span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"blue"</span></span>
+<span class="token punctuation">}</span>
+<span class="token class-name">Text</span> <span class="token punctuation">{</span>
+    <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"宽度: "</span> <span class="token operator">+</span> rect<span class="token punctuation">.</span><span class="token property-access">width</span>   <span class="token comment">// 引用 rect 的宽度</span></span>
+    <span class="token property">anchors.centerIn</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">rect       <span class="token comment">// 引用 rect 作为锚点</span></span>
+<span class="token punctuation">}</span>
+</code></pre><table>
+<thead>
+<tr>
+<th>规则</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code> 必须唯一</td>
+<td>同一个文件中不能有两个相同 <code>id</code></td>
+</tr>
+<tr>
+<td><code>id</code> 以字母开头</td>
+<td>不能以数字开头</td>
+</tr>
+<tr>
+<td><code>id</code> 大小写敏感</td>
+<td><code>myRect</code> 和 <code>myrect</code> 是不同的</td>
+</tr>
+<tr>
+<td><code>id</code> 不能包含特殊字符</td>
+<td>不要用 <code>-</code>、<code>.</code> 等符号</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="14-锚点anchors">1.4 锚点（anchors） </h3>
+<p>锚点是 QML 中最主要的定位方式，替代传统布局管理器。</p>
+<table>
+<thead>
+<tr>
+<th>锚点属性</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>anchors.left</code> / <code>right</code> / <code>top</code> / <code>bottom</code></td>
+<td>绑定到其他元素的相应边</td>
+</tr>
+<tr>
+<td><code>anchors.horizontalCenter</code> / <code>verticalCenter</code></td>
+<td>水平/垂直居中对齐</td>
+</tr>
+<tr>
+<td><code>anchors.centerIn</code></td>
+<td>完全居中于某元素</td>
+</tr>
+<tr>
+<td><code>anchors.fill</code></td>
+<td>填充某元素（等于四条边都绑定）</td>
+</tr>
+<tr>
+<td><code>anchors.margins</code></td>
+<td>统一外边距（所有边）</td>
+</tr>
+<tr>
+<td><code>anchors.leftMargin</code> / <code>rightMargin</code> / <code>topMargin</code> / <code>bottomMargin</code></td>
+<td>单独指定某边距</td>
+</tr>
+</tbody>
+</table>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">400</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">300</span></span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"lightgray"</span></span>
+    
+    <span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+        <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">100</span></span>
+        <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">50</span></span>
+        <span class="token property">anchors.centerIn</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent        <span class="token comment">// 居中</span></span>
+        <span class="token property">anchors.margins</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">10</span>             <span class="token comment">// 外边距（若与边绑定才生效）</span></span>
+        <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"blue"</span></span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token class-name">Text</span> <span class="token punctuation">{</span>
+        <span class="token property">anchors.left</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent<span class="token punctuation">.</span><span class="token property-access">left</span></span>
+        <span class="token property">anchors.leftMargin</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">20</span></span>
+        <span class="token property">anchors.bottom</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent<span class="token punctuation">.</span><span class="token property-access">bottom</span></span>
+        <span class="token property">anchors.bottomMargin</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">10</span></span>
+        <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"左下角文字"</span></span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h3 id="15-信号处理器signal-handlers">1.5 信号处理器（Signal Handlers） </h3>
+<p>QML 中事件通过 <strong><code>on&lt;Signal&gt;</code></strong> 形式处理，例如按钮点击用 <code>onClicked</code>。</p>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Button</span> <span class="token punctuation">{</span>
+    <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"点击我"</span></span>
+    <span class="token property">onClicked</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+        <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">"按钮被点击"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span></span>
+<span class="token punctuation">}</span>
+</code></pre><table>
+<thead>
+<tr>
+<th>要点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>console.log()</code></td>
+<td>输出到应用程序输出面板（调试用）</td>
+</tr>
+<tr>
+<td>大小写敏感</td>
+<td><code>onClicked</code> 是对的，<code>onclicked</code> 是错的！</td>
+</tr>
+<tr>
+<td>多个语句</td>
+<td>用分号 <code>;</code> 或换行分隔</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="2-基础元素">2. 基础元素 </h2>
+<h3 id="21-rectangle矩形">2.1 Rectangle（矩形） </h3>
+<ul>
+<li><strong>用途</strong>：绘制彩色或带边框的矩形，作为容器或背景。</li>
+<li><strong>常用属性</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>width</code>, <code>height</code></td>
+<td>int</td>
+<td>尺寸（像素）</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td>color</td>
+<td>填充色：<code>"red"</code>, <code>"#FF0000"</code>, <code>Qt.rgba(1,0,0,0.5)</code></td>
+</tr>
+<tr>
+<td><code>border.color</code></td>
+<td>color</td>
+<td>边框颜色</td>
+</tr>
+<tr>
+<td><code>border.width</code></td>
+<td>int</td>
+<td>边框宽度（像素）</td>
+</tr>
+<tr>
+<td><code>radius</code></td>
+<td>int</td>
+<td>圆角半径（像素）</td>
+</tr>
+<tr>
+<td><code>opacity</code></td>
+<td>real</td>
+<td>透明度（0.0 ~ 1.0）</td>
+</tr>
+<tr>
+<td><code>visible</code></td>
+<td>bool</td>
+<td>是否可见（默认 true）</td>
+</tr>
+<tr>
+<td><code>enabled</code></td>
+<td>bool</td>
+<td>是否启用（默认 true，false 时不可交互）</td>
+</tr>
+</tbody>
+</table>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">150</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">80</span></span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"lightgray"</span></span>
+    <span class="token property">border.color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"black"</span></span>
+    <span class="token property">border.width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">2</span></span>
+    <span class="token property">radius</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">10</span></span>
+    <span class="token property">opacity</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">0.8</span></span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h3 id="22-text文本">2.2 Text（文本） </h3>
+<ul>
+<li><strong>用途</strong>：显示静态或动态文字。</li>
+<li><strong>常用属性</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text</code></td>
+<td>string</td>
+<td>显示的字符串</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td>color</td>
+<td>文字颜色</td>
+</tr>
+<tr>
+<td><code>font.pixelSize</code></td>
+<td>int</td>
+<td>字体大小（像素）</td>
+</tr>
+<tr>
+<td><code>font.pointSize</code></td>
+<td>int</td>
+<td>字体大小（点，与 DPI 相关）</td>
+</tr>
+<tr>
+<td><code>font.bold</code></td>
+<td>bool</td>
+<td>是否粗体</td>
+</tr>
+<tr>
+<td><code>font.italic</code></td>
+<td>bool</td>
+<td>是否斜体</td>
+</tr>
+<tr>
+<td><code>font.family</code></td>
+<td>string</td>
+<td>字体名称（如 <code>"Arial"</code>）</td>
+</tr>
+<tr>
+<td><code>horizontalAlignment</code></td>
+<td>enum</td>
+<td>水平对齐：<code>Text.AlignLeft</code> / <code>AlignHCenter</code> / <code>AlignRight</code></td>
+</tr>
+<tr>
+<td><code>verticalAlignment</code></td>
+<td>enum</td>
+<td>垂直对齐：<code>Text.AlignTop</code> / <code>AlignVCenter</code> / <code>AlignBottom</code></td>
+</tr>
+<tr>
+<td><code>wrapMode</code></td>
+<td>enum</td>
+<td>换行模式：<code>Text.WordWrap</code>（单词换行）, <code>Text.NoWrap</code>（不换行）</td>
+</tr>
+<tr>
+<td><code>elide</code></td>
+<td>enum</td>
+<td>超出省略号位置：<code>Text.ElideRight</code>（右边省略）等</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>enum</td>
+<td>样式：<code>Text.Normal</code> / <code>Text.Outline</code> / <code>Text.Raised</code> / <code>Text.Sunken</code></td>
+</tr>
+</tbody>
+</table>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Text</span> <span class="token punctuation">{</span>
+    <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"Hello QML"</span></span>
+    <span class="token property">font.pixelSize</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">24</span></span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"#333333"</span></span>
+    <span class="token property">anchors.centerIn</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+    <span class="token property">font.bold</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token boolean">true</span></span>
+    <span class="token property">font.family</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"微软雅黑"</span></span>
+    <span class="token property">style</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token maybe-class-name">Text</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">Outline</span></span></span>
+    <span class="token property">styleColor</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"white"</span></span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h3 id="23-image图像">2.3 Image（图像） </h3>
+<ul>
+<li><strong>用途</strong>：显示本地或网络图片。</li>
+<li><strong>常用属性</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source</code></td>
+<td>url</td>
+<td>图片路径：本地 <code>"file:///C:/path/img.png"</code> 或相对路径 <code>"img.png"</code>；网络 <code>"http://..."</code></td>
+</tr>
+<tr>
+<td><code>fillMode</code></td>
+<td>enum</td>
+<td>填充模式（见下表）</td>
+</tr>
+<tr>
+<td><code>width</code>, <code>height</code></td>
+<td>int</td>
+<td>显示尺寸（若不设置则使用原始尺寸）</td>
+</tr>
+<tr>
+<td><code>sourceSize.width</code>, <code>sourceSize.height</code></td>
+<td>int</td>
+<td>加载时缩放（优化内存）</td>
+</tr>
+<tr>
+<td><code>asynchronous</code></td>
+<td>bool</td>
+<td>是否异步加载（大图建议 true）</td>
+</tr>
+<tr>
+<td><code>opacity</code></td>
+<td>real</td>
+<td>透明度</td>
+</tr>
+<tr>
+<td><code>rotation</code></td>
+<td>real</td>
+<td>旋转角度（度）</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>fillMode 值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Image.Stretch</code></td>
+<td>拉伸填满（可能变形）</td>
+</tr>
+<tr>
+<td><code>Image.PreserveAspectFit</code></td>
+<td>等比完整显示（留白）</td>
+</tr>
+<tr>
+<td><code>Image.PreserveAspectCrop</code></td>
+<td>等比裁剪填充（可能裁剪）</td>
+</tr>
+<tr>
+<td><code>Image.Tile</code></td>
+<td>平铺（重复）</td>
+</tr>
+<tr>
+<td><code>Image.TileVertically</code></td>
+<td>垂直平铺</td>
+</tr>
+<tr>
+<td><code>Image.TileHorizontally</code></td>
+<td>水平平铺</td>
+</tr>
+</tbody>
+</table>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Image</span> <span class="token punctuation">{</span>
+    <span class="token property">source</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"logo.png"</span></span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">100</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">100</span></span>
+    <span class="token property">fillMode</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token maybe-class-name">Image</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">PreserveAspectFit</span></span></span>
+    <span class="token property">asynchronous</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token boolean">true</span></span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h3 id="24-item基础容器">2.4 Item（基础容器） </h3>
+<ul>
+<li><strong>用途</strong>：最轻量级的容器，本身不可见，用于组织子元素。</li>
+<li><strong>特点</strong>：没有视觉外观，仅提供坐标和尺寸管理。</li>
+<li><strong>常用属性</strong>：<code>width</code>, <code>height</code>, <code>x</code>, <code>y</code>, <code>opacity</code>, <code>visible</code>, <code>enabled</code>。</li>
+</ul>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Item</span> <span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">200</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">200</span></span>
+    
+    <span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+        <span class="token property">anchors.fill</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+        <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"green"</span></span>
+        <span class="token property">radius</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">10</span></span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token class-name">Text</span> <span class="token punctuation">{</span>
+        <span class="token property">anchors.centerIn</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+        <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"嵌套在 Item 中"</span></span>
+        <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"white"</span></span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h2 id="3-交互控件">3. 交互控件 </h2>
+<p><strong>需导入</strong>：<code>import QtQuick.Controls 6.0</code></p>
+<h3 id="31-button按钮">3.1 Button（按钮） </h3>
+<ul>
+<li><strong>属性</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text</code></td>
+<td>string</td>
+<td>按钮文字</td>
+</tr>
+<tr>
+<td><code>icon.name</code></td>
+<td>string</td>
+<td>图标名称（需主题支持）</td>
+</tr>
+<tr>
+<td><code>icon.source</code></td>
+<td>url</td>
+<td>图标图片路径</td>
+</tr>
+<tr>
+<td><code>enabled</code></td>
+<td>bool</td>
+<td>是否可用（不可用时显示灰色）</td>
+</tr>
+<tr>
+<td><code>flat</code></td>
+<td>bool</td>
+<td>扁平风格（无背景）</td>
+</tr>
+<tr>
+<td><code>checkable</code></td>
+<td>bool</td>
+<td>是否可保持按下状态</td>
+</tr>
+<tr>
+<td><code>checked</code></td>
+<td>bool</td>
+<td>是否被按下（需 <code>checkable: true</code>）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>信号</strong>：<code>clicked</code>, <code>pressed</code>, <code>released</code>, <code>doubleClicked</code>。</li>
+</ul>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Button</span> <span class="token punctuation">{</span>
+    <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"提交"</span></span>
+    <span class="token property">icon.source</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"send.png"</span></span>
+    <span class="token property">onClicked</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+        <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">"提交被点击"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span></span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h3 id="32-textfield单行输入框">3.2 TextField（单行输入框） </h3>
+<ul>
+<li><strong>属性</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>text</code></td>
+<td>string</td>
+<td>当前输入内容</td>
+</tr>
+<tr>
+<td><code>placeholderText</code></td>
+<td>string</td>
+<td>占位提示文字（灰色）</td>
+</tr>
+<tr>
+<td><code>echoMode</code></td>
+<td>enum</td>
+<td>显示模式：<code>TextField.Normal</code>（正常）/ <code>Password</code>（密码）/ <code>NoEcho</code>（不显示）</td>
+</tr>
+<tr>
+<td><code>inputMethodHints</code></td>
+<td>enum</td>
+<td>提示输入法：<code>Qt.ImhNumbersOnly</code>（数字）、<code>Qt.ImhNoPredictiveText</code>（无预测）</td>
+</tr>
+<tr>
+<td><code>validator</code></td>
+<td>Validator</td>
+<td>输入验证器（如 <code>IntValidator</code>, <code>RegExpValidator</code>）</td>
+</tr>
+<tr>
+<td><code>selectByMouse</code></td>
+<td>bool</td>
+<td>是否支持鼠标选中</td>
+</tr>
+<tr>
+<td><code>readOnly</code></td>
+<td>bool</td>
+<td>只读模式</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>信号</strong>：<code>textChanged</code>（内容变化）、<code>accepted</code>（按回车）、<code>editingFinished</code>（编辑完成）。</li>
+</ul>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">TextField</span> <span class="token punctuation">{</span>
+    <span class="token property">id</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">input</span>
+    <span class="token property">placeholderText</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"请输入用户名"</span></span>
+    <span class="token property">selectByMouse</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token boolean">true</span></span>
+    <span class="token property">onAccepted</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+        <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">"输入内容:"</span><span class="token punctuation">,</span> text<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span></span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h3 id="33-checkbox复选框">3.3 CheckBox（复选框） </h3>
+<ul>
+<li><strong>属性</strong>：<code>checked</code> (bool), <code>text</code> (string), <code>indicator</code>（自定义指示器）。</li>
+<li><strong>信号</strong>：<code>checkedChanged</code>, <code>clicked</code>, <code>toggled</code>。</li>
+</ul>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">CheckBox</span> <span class="token punctuation">{</span>
+    <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"记住我"</span></span>
+    <span class="token property">onCheckedChanged</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+        <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">"选中状态:"</span><span class="token punctuation">,</span> checked<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span></span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h3 id="34-slider滑块">3.4 Slider（滑块） </h3>
+<ul>
+<li><strong>属性</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>from</code></td>
+<td>real</td>
+<td>最小值</td>
+</tr>
+<tr>
+<td><code>to</code></td>
+<td>real</td>
+<td>最大值</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>real</td>
+<td>当前值</td>
+</tr>
+<tr>
+<td><code>stepSize</code></td>
+<td>real</td>
+<td>步长（0 表示连续滑动）</td>
+</tr>
+<tr>
+<td><code>orientation</code></td>
+<td>enum</td>
+<td><code>Qt.Horizontal</code> / <code>Qt.Vertical</code></td>
+</tr>
+<tr>
+<td><code>live</code></td>
+<td>bool</td>
+<td>是否实时发送 <code>valueChanged</code>（默认 true）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>信号</strong>：<code>valueChanged</code>, <code>positionChanged</code>。</li>
+</ul>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Slider</span> <span class="token punctuation">{</span>
+    <span class="token property">id</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">volumeSlider</span>
+    <span class="token property">from</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">0</span></span>
+    <span class="token property">to</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">100</span></span>
+    <span class="token property">value</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">50</span></span>
+    <span class="token property">onValueChanged</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+        <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">"音量:"</span><span class="token punctuation">,</span> value<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span></span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h3 id="35-mousearea鼠标交互区域-桌宠核心组件">3.5 MouseArea（鼠标交互区域）⭐ 桌宠核心组件 </h3>
+<ul>
+<li><strong>用途</strong>：侦测鼠标事件，可以覆盖在任何元素之上（实现点击、拖拽、悬停）。</li>
+<li><strong>核心属性</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>anchors.fill</code></td>
+<td>Item</td>
+<td>覆盖的目标元素</td>
+</tr>
+<tr>
+<td><code>hoverEnabled</code></td>
+<td>bool</td>
+<td>是否启用悬停事件（默认 false）</td>
+</tr>
+<tr>
+<td><code>acceptedButtons</code></td>
+<td>enum</td>
+<td>接受哪个鼠标键：<code>Qt.LeftButton</code>, <code>Qt.RightButton</code> 等</td>
+</tr>
+<tr>
+<td><code>cursorShape</code></td>
+<td>enum</td>
+<td>鼠标样式：<code>Qt.PointingHandCursor</code>, <code>Qt.OpenHandCursor</code> 等</td>
+</tr>
+<tr>
+<td><code>drag.target</code></td>
+<td>Item</td>
+<td>拖拽目标（设置后可拖拽该元素）</td>
+</tr>
+<tr>
+<td><code>drag.minimumX</code>, <code>drag.maximumX</code></td>
+<td>real</td>
+<td>X 轴拖拽范围</td>
+</tr>
+<tr>
+<td><code>drag.minimumY</code>, <code>drag.maximumY</code></td>
+<td>real</td>
+<td>Y 轴拖拽范围</td>
+</tr>
+<tr>
+<td><code>drag.active</code></td>
+<td>bool</td>
+<td>是否正在拖拽（只读）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>核心信号</strong>：<code>clicked</code>, <code>pressed</code>, <code>released</code>, <code>entered</code>（悬停进入）, <code>exited</code>（悬停离开）, <code>positionChanged</code>（鼠标移动）, <code>doubleClicked</code>。</li>
+</ul>
+<p>🔥 <strong>桌宠核心功能：拖拽移动</strong></p>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+    <span class="token property">id</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">pet</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">100</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">150</span></span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"transparent"</span></span>
+    
+    <span class="token class-name">Image</span> <span class="token punctuation">{</span>
+        <span class="token property">anchors.fill</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+        <span class="token property">source</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"pet.png"</span></span>
+        <span class="token property">fillMode</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token maybe-class-name">Image</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">PreserveAspectFit</span></span></span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token class-name">MouseArea</span> <span class="token punctuation">{</span>
+        <span class="token property">anchors.fill</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+        <span class="token property">drag.target</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent          <span class="token comment">// 拖拽时移动整个宠物</span></span>
+        <span class="token property">drag.minimumX</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">0</span></span>
+        <span class="token property">drag.maximumX</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">1920</span>          <span class="token comment">// 限制在屏幕范围内</span></span>
+        <span class="token property">drag.minimumY</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">0</span></span>
+        <span class="token property">drag.maximumY</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">1080</span></span>
+        <span class="token property">hoverEnabled</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token boolean">true</span></span>
+        
+        <span class="token property">onClicked</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+            <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">"单击宠物互动"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span></span>
+        <span class="token property">onDoubleClicked</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+            <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">"双击切换皮肤"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span></span>
+        <span class="token property">onEntered</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+            parent<span class="token punctuation">.</span><span class="token property-access">opacity</span> <span class="token operator">=</span> <span class="token number">1.0</span>      <span class="token comment">// 鼠标悬停时高亮</span>
+        <span class="token punctuation">}</span></span>
+        <span class="token property">onExited</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+            parent<span class="token punctuation">.</span><span class="token property-access">opacity</span> <span class="token operator">=</span> <span class="token number">0.8</span>
+        <span class="token punctuation">}</span></span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h2 id="4-布局与定位">4. 布局与定位 </h2>
+<h3 id="41-anchors锚布局">4.1 anchors（锚布局） </h3>
+<p>锚布局是 QML <strong>首选</strong>的布局方式，已在 <a href="#14-%E9%94%9A%E7%82%B9anchors">1.4</a> 中详细介绍。它灵活强大，大部分情况无需使用 Row/Column。</p>
+<h3 id="42-row水平排列">4.2 Row（水平排列） </h3>
+<ul>
+<li><strong>用途</strong>：将子项从左到右依次排列。</li>
+<li><strong>常用属性</strong>：<code>spacing</code>（间距，像素）, <code>anchors</code> 可用于整体定位。</li>
+</ul>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Row</span> <span class="token punctuation">{</span>
+    <span class="token property">spacing</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">10</span></span>
+    <span class="token property">anchors.centerIn</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+    <span class="token class-name">Button</span> <span class="token punctuation">{</span> <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"A"</span> </span><span class="token punctuation">}</span>
+    <span class="token class-name">Button</span> <span class="token punctuation">{</span> <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"B"</span> </span><span class="token punctuation">}</span>
+    <span class="token class-name">Button</span> <span class="token punctuation">{</span> <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"C"</span> </span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="43-column垂直排列">4.3 Column（垂直排列） </h3>
+<p>类似 Row，方向垂直。</p>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Column</span> <span class="token punctuation">{</span>
+    <span class="token property">spacing</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">5</span></span>
+    <span class="token property">anchors.centerIn</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+    <span class="token class-name">TextField</span> <span class="token punctuation">{</span> <span class="token property">placeholderText</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"姓名"</span> </span><span class="token punctuation">}</span>
+    <span class="token class-name">TextField</span> <span class="token punctuation">{</span> <span class="token property">placeholderText</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"电话"</span> </span><span class="token punctuation">}</span>
+    <span class="token class-name">Button</span> <span class="token punctuation">{</span> <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"提交"</span> </span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="44-grid网格布局">4.4 Grid（网格布局） </h3>
+<ul>
+<li><strong>属性</strong>：<code>rows</code>（行数）, <code>columns</code>（列数）, <code>spacing</code>（统一间距）, <code>flow</code>（<code>Grid.LeftToRight</code> 行优先 / <code>Grid.TopToBottom</code> 列优先）。</li>
+</ul>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Grid</span> <span class="token punctuation">{</span>
+    <span class="token property">columns</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">3</span></span>
+    <span class="token property">spacing</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">10</span></span>
+    <span class="token property">anchors.centerIn</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+    
+    <span class="token class-name">Repeater</span> <span class="token punctuation">{</span>
+        <span class="token property">model</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">6</span></span>
+        <span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+            <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">50</span></span>
+            <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">50</span></span>
+            <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"lightblue"</span></span>
+            <span class="token property">radius</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">5</span></span>
+            <span class="token class-name">Text</span> <span class="token punctuation">{</span>
+                <span class="token property">anchors.centerIn</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+                <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">index <span class="token operator">+</span> <span class="token number">1</span></span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h2 id="5-信号与事件">5. 信号与事件 </h2>
+<h3 id="51-内置信号处理器">5.1 内置信号处理器 </h3>
+<p>所有交互控件都提供信号，使用 <code>on&lt;SignalName&gt;</code> 格式连接，如 <code>onClicked</code>、<code>onTextChanged</code>、<code>onPressed</code> 等。</p>
+<h3 id="52-自定义信号">5.2 自定义信号 </h3>
+<p>可以在 QML 文件中使用 <code>signal</code> 关键字定义自己的信号，并连接其他对象。</p>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token comment">// MyComponent.qml</span>
+<span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+    <span class="token property">id</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">root</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">200</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">100</span></span>
+    
+    signal greeting(string name)      <span class="token comment">// 定义信号，带字符串参数</span>
+    
+    <span class="token class-name">Button</span> <span class="token punctuation">{</span>
+        <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"打招呼"</span></span>
+        <span class="token property">onClicked</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+            root<span class="token punctuation">.</span><span class="token method function property-access">greeting</span><span class="token punctuation">(</span><span class="token string">"QML"</span><span class="token punctuation">)</span>      <span class="token comment">// 发射信号</span>
+        <span class="token punctuation">}</span></span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 使用该组件时</span>
+<span class="token class-name">MyComponent</span> <span class="token punctuation">{</span>
+    <span class="token property">onGreeting</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+        <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">"收到信号:"</span><span class="token punctuation">,</span> name<span class="token punctuation">)</span>   <span class="token comment">// name 是信号传递的参数</span>
+    <span class="token punctuation">}</span></span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="53-使用-connections-连接外部信号">5.3 使用 Connections 连接外部信号 </h3>
+<p>有时你需要连接一个未在当前文件中定义的对象信号，可使用 <code>Connections</code> 元素。</p>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Connections</span> <span class="token punctuation">{</span>
+    <span class="token property">target</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">someOtherObject</span>
+    <span class="token property">onSomeSignal</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+        <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">"收到外部信号"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span></span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h2 id="6-动画系统">6. 动画系统 </h2>
+<h3 id="61-propertyanimation属性动画">6.1 PropertyAnimation（属性动画） </h3>
+<ul>
+<li><strong>用途</strong>：在一段时间内改变一个或多个属性。</li>
+<li><strong>常用属性</strong>：<code>target</code>（目标对象）、<code>property</code>（属性名）、<code>from</code>（起始值）、<code>to</code>（结束值）、<code>duration</code>（持续时间，毫秒）、<code>easing.type</code>（缓动曲线）。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>easing.type 常用值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Easing.Linear</code></td>
+<td>匀速</td>
+</tr>
+<tr>
+<td><code>Easing.InQuad</code> / <code>OutQuad</code> / <code>InOutQuad</code></td>
+<td>二次缓动</td>
+</tr>
+<tr>
+<td><code>Easing.InCubic</code> / <code>OutCubic</code></td>
+<td>三次缓动</td>
+</tr>
+<tr>
+<td><code>Easing.InOutElastic</code></td>
+<td>弹性效果</td>
+</tr>
+<tr>
+<td><code>Easing.InOutBounce</code></td>
+<td>弹跳效果</td>
+</tr>
+</tbody>
+</table>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+    <span class="token property">id</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">rect</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">100</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">100</span></span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"red"</span></span>
+    
+    <span class="token class-name">MouseArea</span> <span class="token punctuation">{</span>
+        <span class="token property">anchors.fill</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+        <span class="token property">onClicked</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+            anim<span class="token punctuation">.</span><span class="token method function property-access">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span></span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token class-name">PropertyAnimation</span> <span class="token punctuation">{</span>
+        <span class="token property">id</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">anim</span>
+        <span class="token property">target</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">rect</span>
+        <span class="token property">property</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"width"</span></span>
+        <span class="token property">to</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">200</span></span>
+        <span class="token property">duration</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">1000</span></span>
+        <span class="token property">easing.type</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token maybe-class-name">Easing</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">InOutQuad</span></span></span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="62-numberanimation数值动画">6.2 NumberAnimation（数值动画） </h3>
+<p><code>NumberAnimation</code> 是 <code>PropertyAnimation</code> 的简写，专门针对数值类型。</p>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">NumberAnimation</span> <span class="token punctuation">{</span>
+    <span class="token property">target</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">rect</span>
+    <span class="token property">property</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"opacity"</span></span>
+    <span class="token property">from</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">0</span></span>
+    <span class="token property">to</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">1</span></span>
+    <span class="token property">duration</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">500</span></span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="63-状态与过渡state--transition">6.3 状态与过渡（State &amp; Transition） </h3>
+<ul>
+<li><strong>State</strong>：定义一组属性更改的集合。</li>
+<li><strong>Transition</strong>：定义状态切换时的动画。</li>
+</ul>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+    <span class="token property">id</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">rect</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">200</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">200</span></span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"lightblue"</span></span>
+    <span class="token property">state</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"default"</span></span>
+
+    <span class="token property">states</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token class-name">State</span> <span class="token punctuation">{</span>
+            <span class="token property">name</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"expanded"</span></span>
+            <span class="token class-name">PropertyChanges</span> <span class="token punctuation">{</span>
+                <span class="token property">target</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">rect</span>
+                <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">300</span></span>
+                <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">300</span></span>
+                <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"orange"</span></span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+    
+    <span class="token property">transitions</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token class-name">Transition</span> <span class="token punctuation">{</span>
+            <span class="token property">from</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"default"</span></span>
+            <span class="token property">to</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"expanded"</span></span>
+            <span class="token class-name">PropertyAnimation</span> <span class="token punctuation">{</span>
+                <span class="token property">properties</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"width,height,color"</span></span>
+                <span class="token property">duration</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">500</span></span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token class-name">Transition</span> <span class="token punctuation">{</span>
+            <span class="token property">from</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"expanded"</span></span>
+            <span class="token property">to</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"default"</span></span>
+            <span class="token class-name">PropertyAnimation</span> <span class="token punctuation">{</span>
+                <span class="token property">properties</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"width,height,color"</span></span>
+                <span class="token property">duration</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">300</span></span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+    
+    <span class="token class-name">MouseArea</span> <span class="token punctuation">{</span>
+        <span class="token property">anchors.fill</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+        <span class="token property">onClicked</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+            parent<span class="token punctuation">.</span><span class="token property-access">state</span> <span class="token operator">=</span> <span class="token punctuation">(</span>parent<span class="token punctuation">.</span><span class="token property-access">state</span> <span class="token operator">===</span> <span class="token string">"default"</span> <span class="token operator">?</span> <span class="token string">"expanded"</span> <span class="token operator">:</span> <span class="token string">"default"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span></span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h2 id="7-列表模型与视图">7. 列表模型与视图 </h2>
+<h3 id="71-listview列表视图">7.1 ListView（列表视图） </h3>
+<ul>
+<li><strong>用途</strong>：显示可滚动的项目列表。</li>
+<li><strong>常用属性</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>model</code></td>
+<td>数据模型（ListModel 或 Python 模型）</td>
+</tr>
+<tr>
+<td><code>delegate</code></td>
+<td>项目模板（每个列表项如何显示）</td>
+</tr>
+<tr>
+<td><code>orientation</code></td>
+<td>方向：<code>ListView.Vertical</code>（默认）/ <code>ListView.Horizontal</code></td>
+</tr>
+<tr>
+<td><code>spacing</code></td>
+<td>项目间距（像素）</td>
+</tr>
+<tr>
+<td><code>currentIndex</code></td>
+<td>当前选中项索引</td>
+</tr>
+<tr>
+<td><code>snapMode</code></td>
+<td>吸附模式：<code>ListView.NoSnap</code> / <code>SnapToItem</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-listmodel列表模型">7.2 ListModel（列表模型） </h3>
+<p>在 QML 中直接定义数据。</p>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">ListView</span> <span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">200</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">300</span></span>
+    <span class="token property">anchors.centerIn</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+    
+    <span class="token property">model</span><span class="token punctuation">:</span> <span class="token class-name">ListModel</span> <span class="token punctuation">{</span>
+        <span class="token class-name">ListElement</span> <span class="token punctuation">{</span> <span class="token property">name</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"苹果"</span></span><span class="token punctuation">;</span> <span class="token property">price</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">5.0</span> </span><span class="token punctuation">}</span>
+        <span class="token class-name">ListElement</span> <span class="token punctuation">{</span> <span class="token property">name</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"香蕉"</span></span><span class="token punctuation">;</span> <span class="token property">price</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">3.5</span> </span><span class="token punctuation">}</span>
+        <span class="token class-name">ListElement</span> <span class="token punctuation">{</span> <span class="token property">name</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"橙子"</span></span><span class="token punctuation">;</span> <span class="token property">price</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">4.2</span> </span><span class="token punctuation">}</span>
+        <span class="token class-name">ListElement</span> <span class="token punctuation">{</span> <span class="token property">name</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"西瓜"</span></span><span class="token punctuation">;</span> <span class="token property">price</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">8.0</span> </span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token property">delegate</span><span class="token punctuation">:</span> <span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+        <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">40</span></span>
+        <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent<span class="token punctuation">.</span><span class="token property-access">width</span></span>
+        <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">index <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">?</span> <span class="token string">"#eeeeee"</span> <span class="token operator">:</span> <span class="token string">"#dddddd"</span></span>
+        
+        <span class="token class-name">Text</span> <span class="token punctuation">{</span>
+            <span class="token property">anchors.centerIn</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+            <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">name <span class="token operator">+</span> <span class="token string">"：¥"</span> <span class="token operator">+</span> price<span class="token punctuation">.</span><span class="token method function property-access">toFixed</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span></span>
+            <span class="token property">font.pixelSize</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">14</span></span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p><strong>注意</strong>：<code>delegate</code> 内可直接使用模型中的角色名（如 <code>name</code>、<code>price</code>），以及内置的 <code>index</code>（行号）。</p>
+<h3 id="73-loader动态加载器-桌宠换装核心">7.3 Loader（动态加载器）⭐ 桌宠换装核心 </h3>
+<ul>
+<li><strong>用途</strong>：按需加载并显示不同的 QML 组件，用于切换页面、弹窗或切换宠物皮肤。</li>
+<li><strong>核心属性</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source</code></td>
+<td>加载外部 QML 文件路径</td>
+</tr>
+<tr>
+<td><code>sourceComponent</code></td>
+<td>加载内联组件</td>
+</tr>
+<tr>
+<td><code>item</code></td>
+<td>获取加载出来的对象（只读）</td>
+</tr>
+<tr>
+<td><code>active</code></td>
+<td>是否激活加载（默认 true）</td>
+</tr>
+<tr>
+<td><code>asynchronous</code></td>
+<td>是否异步加载</td>
+</tr>
+</tbody>
+</table>
+<p>🔥 <strong>桌宠换装示例</strong>：</p>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token keyword keyword-import">import</span> QtQuick 6.0
+<span class="token keyword keyword-import">import</span> QtQuick.Controls 6.0
+<span class="token keyword keyword-import">import</span> QtQuick.Window 6.0
+
+<span class="token class-name">Window</span> <span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">400</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">500</span></span>
+    <span class="token property">visible</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token boolean">true</span></span>
+    
+    <span class="token class-name">Loader</span> <span class="token punctuation">{</span>
+        <span class="token property">id</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">petLoader</span>
+        <span class="token property">anchors.centerIn</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+        <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">200</span></span>
+        <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">200</span></span>
+        <span class="token property">source</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"Dog.qml"</span>          <span class="token comment">// 默认显示狗</span></span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token class-name">Row</span> <span class="token punctuation">{</span>
+        <span class="token property">anchors.bottom</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent<span class="token punctuation">.</span><span class="token property-access">bottom</span></span>
+        <span class="token property">anchors.bottomMargin</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">20</span></span>
+        <span class="token property">anchors.horizontalCenter</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent<span class="token punctuation">.</span><span class="token property-access">horizontalCenter</span></span>
+        <span class="token property">spacing</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">15</span></span>
+        
+        <span class="token class-name">Button</span> <span class="token punctuation">{</span>
+            <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"🐱 猫咪"</span></span>
+            <span class="token property">onClicked</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+                petLoader<span class="token punctuation">.</span><span class="token property-access">source</span> <span class="token operator">=</span> <span class="token string">"Cat.qml"</span>
+            <span class="token punctuation">}</span></span>
+        <span class="token punctuation">}</span>
+        <span class="token class-name">Button</span> <span class="token punctuation">{</span>
+            <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"🐶 狗狗"</span></span>
+            <span class="token property">onClicked</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+                petLoader<span class="token punctuation">.</span><span class="token property-access">source</span> <span class="token operator">=</span> <span class="token string">"Dog.qml"</span>
+            <span class="token punctuation">}</span></span>
+        <span class="token punctuation">}</span>
+        <span class="token class-name">Button</span> <span class="token punctuation">{</span>
+            <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"🐰 兔子"</span></span>
+            <span class="token property">onClicked</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+                petLoader<span class="token punctuation">.</span><span class="token property-access">source</span> <span class="token operator">=</span> <span class="token string">"Rabbit.qml"</span>
+            <span class="token punctuation">}</span></span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><p>对应的 <code>Dog.qml</code>（简单示例）：</p>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token keyword keyword-import">import</span> QtQuick 6.0
+
+<span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">200</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">200</span></span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"transparent"</span></span>
+    
+    <span class="token class-name">Image</span> <span class="token punctuation">{</span>
+        <span class="token property">anchors.fill</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+        <span class="token property">source</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"dog.png"</span></span>
+        <span class="token property">fillMode</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token maybe-class-name">Image</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">PreserveAspectFit</span></span></span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token class-name">Text</span> <span class="token punctuation">{</span>
+        <span class="token property">anchors.bottom</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent<span class="token punctuation">.</span><span class="token property-access">bottom</span></span>
+        <span class="token property">anchors.horizontalCenter</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent<span class="token punctuation">.</span><span class="token property-access">horizontalCenter</span></span>
+        <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"🐕 狗狗"</span></span>
+        <span class="token property">font.pixelSize</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">20</span></span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h2 id="8-与-pyside6-整合">8. 与 PySide6 整合 </h2>
+<h3 id="81-加载-qml-文件">8.1 加载 QML 文件 </h3>
+<p>使用 <code>QQmlApplicationEngine</code> 加载。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-import">import</span> sys
+<span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtQml <span class="token keyword keyword-import">import</span> QQmlApplicationEngine
+<span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtWidgets <span class="token keyword keyword-import">import</span> QApplication
+
+app <span class="token operator">=</span> QApplication<span class="token punctuation">(</span>sys<span class="token punctuation">.</span>argv<span class="token punctuation">)</span>
+engine <span class="token operator">=</span> QQmlApplicationEngine<span class="token punctuation">(</span><span class="token punctuation">)</span>
+engine<span class="token punctuation">.</span>load<span class="token punctuation">(</span><span class="token string">"main.qml"</span><span class="token punctuation">)</span>   <span class="token comment"># 加载当前目录下的 main.qml</span>
+
+<span class="token keyword keyword-if">if</span> <span class="token keyword keyword-not">not</span> engine<span class="token punctuation">.</span>rootObjects<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span>app<span class="token punctuation">.</span><span class="token keyword keyword-exec">exec</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre><h3 id="82-从-python-暴露数据给-qml上下文属性">8.2 从 Python 暴露数据给 QML（上下文属性） </h3>
+<p>使用 <code>engine.rootContext().setContextProperty(name, object)</code>。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtCore <span class="token keyword keyword-import">import</span> QObject<span class="token punctuation">,</span> Property<span class="token punctuation">,</span> Signal
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">DataSource</span><span class="token punctuation">(</span>QObject<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>_temperature <span class="token operator">=</span> <span class="token number">25</span>
+
+    <span class="token decorator annotation punctuation">@Property</span><span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> notify<span class="token operator">=</span>temperatureChanged<span class="token punctuation">)</span>   <span class="token comment"># 使 QML 可绑定</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">temperature</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>_temperature
+
+    <span class="token decorator annotation punctuation">@temperature<span class="token punctuation">.</span>setter</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">temperature</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> val<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> self<span class="token punctuation">.</span>_temperature <span class="token operator">!=</span> val<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>_temperature <span class="token operator">=</span> val
+            self<span class="token punctuation">.</span>temperatureChanged<span class="token punctuation">.</span>emit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    temperatureChanged <span class="token operator">=</span> Signal<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 注册</span>
+data <span class="token operator">=</span> DataSource<span class="token punctuation">(</span><span class="token punctuation">)</span>
+engine<span class="token punctuation">.</span>rootContext<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>setContextProperty<span class="token punctuation">(</span><span class="token string">"dataSource"</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+</code></pre><p>在 QML 中可直接使用 <code>dataSource.temperature</code>，且更新时会自动刷新绑定它的元素。</p>
+<h3 id="83-从-qml-调用-python-方法槽">8.3 从 QML 调用 Python 方法（槽） </h3>
+<p>在 Python 类中定义 <code>@Slot</code> 装饰器的方法，然后通过上下文属性暴露。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtCore <span class="token keyword keyword-import">import</span> Slot
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Backend</span><span class="token punctuation">(</span>QObject<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token decorator annotation punctuation">@Slot</span><span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">,</span> result<span class="token operator">=</span><span class="token builtin">str</span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">greet</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-return">return</span> <span class="token string-interpolation"><span class="token string">f"Hello, </span><span class="token interpolation"><span class="token punctuation">{</span>name<span class="token punctuation">}</span></span><span class="token string">!"</span></span>
+
+backend <span class="token operator">=</span> Backend<span class="token punctuation">(</span><span class="token punctuation">)</span>
+engine<span class="token punctuation">.</span>rootContext<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>setContextProperty<span class="token punctuation">(</span><span class="token string">"backend"</span><span class="token punctuation">,</span> backend<span class="token punctuation">)</span>
+</code></pre><p>QML 中调用：</p>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Button</span> <span class="token punctuation">{</span>
+    <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"打招呼"</span></span>
+    <span class="token property">onClicked</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+        <span class="token keyword keyword-var">var</span> result <span class="token operator">=</span> backend<span class="token punctuation">.</span><span class="token method function property-access">greet</span><span class="token punctuation">(</span><span class="token string">"Alice"</span><span class="token punctuation">)</span>
+        <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span></span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="84-python-列表模型对接-qml-listview--核心进阶">8.4 Python 列表模型对接 QML ListView ⭐ 核心进阶 </h3>
+<p>如果要在 QML 中显示 Python 的列表数据（如背包、任务列表），需要继承 <code>QAbstractListModel</code>。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtCore <span class="token keyword keyword-import">import</span> QAbstractListModel<span class="token punctuation">,</span> Qt<span class="token punctuation">,</span> Signal<span class="token punctuation">,</span> Slot
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">PetBackpackModel</span><span class="token punctuation">(</span>QAbstractListModel<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""Python 端的背包数据模型"""</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> parent<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span>parent<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>_items <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"🦴 骨头"</span><span class="token punctuation">,</span> <span class="token string">"🥏 飞盘"</span><span class="token punctuation">,</span> <span class="token string">"🐟 小鱼干"</span><span class="token punctuation">]</span>
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">rowCount</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> parent<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""告诉 QML 有多少行（必须重写）"""</span>
+        <span class="token keyword keyword-return">return</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>_items<span class="token punctuation">)</span>
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">data</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">,</span> role<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""告诉 QML 每行显示什么（必须重写）"""</span>
+        <span class="token keyword keyword-if">if</span> <span class="token keyword keyword-not">not</span> index<span class="token punctuation">.</span>isValid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword keyword-return">return</span> <span class="token boolean">None</span>
+        <span class="token keyword keyword-return">return</span> self<span class="token punctuation">.</span>_items<span class="token punctuation">[</span>index<span class="token punctuation">.</span>row<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+
+    <span class="token decorator annotation punctuation">@Slot</span><span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">addItem</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> item<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""暴露给 QML 调用的添加方法"""</span>
+        self<span class="token punctuation">.</span>beginInsertRows<span class="token punctuation">(</span>self<span class="token punctuation">.</span>index<span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>_items<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>_items<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>_items<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>_items<span class="token punctuation">.</span>append<span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>endInsertRows<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token decorator annotation punctuation">@Slot</span><span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">removeItem</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""暴露给 QML 调用的删除方法"""</span>
+        <span class="token keyword keyword-if">if</span> <span class="token number">0</span> <span class="token operator">&lt;=</span> index <span class="token operator">&lt;</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>_items<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>beginRemoveRows<span class="token punctuation">(</span>self<span class="token punctuation">.</span>index<span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">,</span> index<span class="token punctuation">,</span> index<span class="token punctuation">)</span>
+            <span class="token keyword keyword-del">del</span> self<span class="token punctuation">.</span>_items<span class="token punctuation">[</span>index<span class="token punctuation">]</span>
+            self<span class="token punctuation">.</span>endRemoveRows<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 在 Python 主程序中：</span>
+model <span class="token operator">=</span> PetBackpackModel<span class="token punctuation">(</span><span class="token punctuation">)</span>
+engine<span class="token punctuation">.</span>rootContext<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>setContextProperty<span class="token punctuation">(</span><span class="token string">"backendModel"</span><span class="token punctuation">,</span> model<span class="token punctuation">)</span>
+</code></pre><p>在 QML 中使用：</p>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">ListView</span> <span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">200</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">300</span></span>
+    <span class="token property">model</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">backendModel              <span class="token comment">// 直接绑定 Python 列表模型</span></span>
+    <span class="token property">delegate</span><span class="token punctuation">:</span> <span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+        <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">40</span></span>
+        <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent<span class="token punctuation">.</span><span class="token property-access">width</span></span>
+        <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">index <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">?</span> <span class="token string">"#eee"</span> <span class="token operator">:</span> <span class="token string">"#ddd"</span></span>
+        <span class="token class-name">Text</span> <span class="token punctuation">{</span>
+            <span class="token property">anchors.centerIn</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+            <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">model<span class="token punctuation">.</span><span class="token property-access">display</span>       <span class="token comment">// 默认角色名为 display</span></span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Button</span> <span class="token punctuation">{</span>
+    <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"添加物品"</span></span>
+    <span class="token property">onClicked</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+        backendModel<span class="token punctuation">.</span><span class="token method function property-access">addItem</span><span class="token punctuation">(</span><span class="token string">"🎾 网球"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span></span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="85-信号互连python--qml-双向通信">8.5 信号互连（Python ↔ QML 双向通信） </h3>
+<ul>
+<li><strong>QML 发射信号，Python 接收</strong>：通过上下文属性的对象，在 Python 中连接其信号。</li>
+<li><strong>Python 发射信号，QML 接收</strong>：在 QML 中使用 <code>Connections</code> 连接 Python 对象的信号。</li>
+</ul>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token comment">// main.qml</span>
+<span class="token class-name">Connections</span> <span class="token punctuation">{</span>
+    <span class="token property">target</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">backend</span>
+    <span class="token property">onPetHungry</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+        <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">"Python 说宠物饿了！"</span><span class="token punctuation">)</span>
+        <span class="token comment">// 显示喂食提示</span>
+    <span class="token punctuation">}</span></span>
+<span class="token punctuation">}</span>
+</code></pre><pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># Python 端</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">PetLogic</span><span class="token punctuation">(</span>QObject<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    petHungry <span class="token operator">=</span> Signal<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">checkHunger</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-if">if</span> self<span class="token punctuation">.</span>hunger <span class="token operator">&gt;</span> <span class="token number">80</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>petHungry<span class="token punctuation">.</span>emit<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># 触发 QML 显示提示</span>
+</code></pre><hr>
+<h2 id="9-桌面宠物必备技巧">9. 桌面宠物必备技巧 </h2>
+<h3 id="91-透明窗口">9.1 透明窗口 </h3>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token keyword keyword-import">import</span> QtQuick 6.0
+<span class="token keyword keyword-import">import</span> QtQuick.Window 6.0
+
+<span class="token class-name">Window</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"transparent"</span>              <span class="token comment">// 关键：背景透明</span></span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">300</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">300</span></span>
+    <span class="token property">visible</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token boolean">true</span></span>
+    
+    <span class="token comment">// ... 宠物内容</span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="92-无边框--置顶">9.2 无边框 &amp; 置顶 </h3>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Window</span> <span class="token punctuation">{</span>
+    <span class="token property">flags</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token maybe-class-name">Qt</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">FramelessWindowHint</span></span> <span class="token operator">|</span> <span class="token maybe-class-name">Qt</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">WindowStaysOnTopHint</span></span></span>
+    <span class="token comment">// Qt.FramelessWindowHint - 无边框</span>
+    <span class="token comment">// Qt.WindowStaysOnTopHint - 永远置顶</span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="93-鼠标穿透让鼠标点击穿透窗口">9.3 鼠标穿透（让鼠标点击穿透窗口） </h3>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token class-name">Window</span> <span class="token punctuation">{</span>
+    <span class="token property">flags</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token maybe-class-name">Qt</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">FramelessWindowHint</span></span> <span class="token operator">|</span> <span class="token maybe-class-name">Qt</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">WindowStaysOnTopHint</span></span> <span class="token operator">|</span> <span class="token maybe-class-name">Qt</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">WindowTransparentForInputHint</span></span></span>
+    <span class="token comment">// 注意：此模式下无法点击宠物本身，适合纯展示</span>
+<span class="token punctuation">}</span>
+</code></pre><p>通常我们需要部分交互（如拖拽移动），可结合 <code>MouseArea</code> 实现（见 <a href="#35-mousearea%E9%BC%A0%E6%A0%87%E4%BA%A4%E4%BA%92%E5%8C%BA%E5%9F%9F-">3.5</a>）。</p>
+<h3 id="94-完整桌宠窗口模板">9.4 完整桌宠窗口模板 </h3>
+<pre data-role="codeBlock" data-info="qml" class="language-qml qml"><code><span class="token keyword keyword-import">import</span> QtQuick 6.0
+<span class="token keyword keyword-import">import</span> QtQuick.Window 6.0
+<span class="token keyword keyword-import">import</span> QtQuick.Controls 6.0
+
+<span class="token class-name">Window</span> <span class="token punctuation">{</span>
+    <span class="token property">id</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">root</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">200</span></span>
+    <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">250</span></span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"transparent"</span></span>
+    <span class="token property">flags</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token maybe-class-name">Qt</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">FramelessWindowHint</span></span> <span class="token operator">|</span> <span class="token maybe-class-name">Qt</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">WindowStaysOnTopHint</span></span></span>
+    
+    <span class="token comment">// 宠物主体</span>
+    <span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+        <span class="token property">id</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">petBody</span>
+        <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">180</span></span>
+        <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">200</span></span>
+        <span class="token property">anchors.centerIn</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+        <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"transparent"</span></span>
+        
+        <span class="token class-name">Image</span> <span class="token punctuation">{</span>
+            <span class="token property">id</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">petImage</span>
+            <span class="token property">anchors.fill</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+            <span class="token property">source</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"pet_default.png"</span></span>
+            <span class="token property">fillMode</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token maybe-class-name">Image</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">PreserveAspectFit</span></span></span>
+        <span class="token punctuation">}</span>
+        
+        <span class="token comment">// 状态标签（显示心情/饥饿值）</span>
+        <span class="token class-name">Rectangle</span> <span class="token punctuation">{</span>
+            <span class="token property">anchors.bottom</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent<span class="token punctuation">.</span><span class="token property-access">bottom</span></span>
+            <span class="token property">anchors.horizontalCenter</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent<span class="token punctuation">.</span><span class="token property-access">horizontalCenter</span></span>
+            <span class="token property">width</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">80</span></span>
+            <span class="token property">height</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">25</span></span>
+            <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"rgba(0,0,0,0.6)"</span></span>
+            <span class="token property">radius</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">12</span></span>
+            
+            <span class="token class-name">Text</span> <span class="token punctuation">{</span>
+                <span class="token property">anchors.centerIn</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+                <span class="token property">text</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"😊 开心"</span></span>
+                <span class="token property">color</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"white"</span></span>
+                <span class="token property">font.pixelSize</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">12</span></span>
+                <span class="token property">id</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">statusText</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment">// 鼠标交互：拖拽 + 点击</span>
+    <span class="token class-name">MouseArea</span> <span class="token punctuation">{</span>
+        <span class="token property">anchors.fill</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+        <span class="token property">drag.target</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">parent</span>
+        <span class="token property">drag.minimumX</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">0</span></span>
+        <span class="token property">drag.maximumX</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token maybe-class-name">Screen</span><span class="token punctuation">.</span><span class="token property-access">width</span> <span class="token operator">-</span> root<span class="token punctuation">.</span><span class="token property-access">width</span></span>
+        <span class="token property">drag.minimumY</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">0</span></span>
+        <span class="token property">drag.maximumY</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token maybe-class-name">Screen</span><span class="token punctuation">.</span><span class="token property-access">height</span> <span class="token operator">-</span> root<span class="token punctuation">.</span><span class="token property-access">height</span></span>
+        <span class="token property">hoverEnabled</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token boolean">true</span></span>
+        
+        <span class="token property">onClicked</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+            <span class="token comment">// 点击互动：切换表情</span>
+            <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">"点击宠物"</span><span class="token punctuation">)</span>
+            petImage<span class="token punctuation">.</span><span class="token property-access">source</span> <span class="token operator">=</span> <span class="token string">"pet_happy.png"</span>
+            statusText<span class="token punctuation">.</span><span class="token property-access">text</span> <span class="token operator">=</span> <span class="token string">"😄 开心"</span>
+            
+            <span class="token comment">// 1秒后恢复</span>
+            resetTimer<span class="token punctuation">.</span><span class="token method function property-access">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span></span>
+        
+        <span class="token property">onDoubleClicked</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+            <span class="token comment">// 双击：切换皮肤</span>
+            <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">"双击换装"</span><span class="token punctuation">)</span>
+            petImage<span class="token punctuation">.</span><span class="token property-access">source</span> <span class="token operator">=</span> <span class="token string">"pet_cool.png"</span>
+            statusText<span class="token punctuation">.</span><span class="token property-access">text</span> <span class="token operator">=</span> <span class="token string">"😎 酷"</span>
+        <span class="token punctuation">}</span></span>
+        
+        <span class="token property">onEntered</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+            petBody<span class="token punctuation">.</span><span class="token property-access">scale</span> <span class="token operator">=</span> <span class="token number">1.05</span>        <span class="token comment">// 悬停放大</span>
+        <span class="token punctuation">}</span></span>
+        <span class="token property">onExited</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+            petBody<span class="token punctuation">.</span><span class="token property-access">scale</span> <span class="token operator">=</span> <span class="token number">1.0</span>
+        <span class="token punctuation">}</span></span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment">// 定时器：恢复默认状态</span>
+    <span class="token class-name">Timer</span> <span class="token punctuation">{</span>
+        <span class="token property">id</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">resetTimer</span>
+        <span class="token property">interval</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">1000</span></span>
+        <span class="token property">running</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token boolean">false</span></span>
+        <span class="token property">repeat</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token boolean">false</span></span>
+        <span class="token property">onTriggered</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+            petImage<span class="token punctuation">.</span><span class="token property-access">source</span> <span class="token operator">=</span> <span class="token string">"pet_default.png"</span>
+            statusText<span class="token punctuation">.</span><span class="token property-access">text</span> <span class="token operator">=</span> <span class="token string">"😊 开心"</span>
+        <span class="token punctuation">}</span></span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment">// 桌面宠物特有的“行走”动画</span>
+    <span class="token class-name">NumberAnimation</span> <span class="token punctuation">{</span>
+        <span class="token property">id</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">walkAnimation</span>
+        <span class="token property">target</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript">root</span>
+        <span class="token property">property</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token string">"x"</span></span>
+        <span class="token property">duration</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token number">3000</span></span>
+        <span class="token property">easing.type</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token maybe-class-name">Easing</span><span class="token punctuation">.</span><span class="token property-access"><span class="token maybe-class-name">InOutQuad</span></span></span>
+        <span class="token property">onFinished</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+            <span class="token comment">// 走到边界后反向</span>
+            <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span>root<span class="token punctuation">.</span><span class="token property-access">x</span> <span class="token operator">&gt;</span> <span class="token maybe-class-name">Screen</span><span class="token punctuation">.</span><span class="token property-access">width</span> <span class="token operator">-</span> root<span class="token punctuation">.</span><span class="token property-access">width</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                walkAnimation<span class="token punctuation">.</span><span class="token property-access">to</span> <span class="token operator">=</span> <span class="token number">0</span>
+            <span class="token punctuation">}</span> <span class="token keyword control-flow keyword-else">else</span> <span class="token punctuation">{</span>
+                walkAnimation<span class="token punctuation">.</span><span class="token property-access">to</span> <span class="token operator">=</span> <span class="token maybe-class-name">Screen</span><span class="token punctuation">.</span><span class="token property-access">width</span> <span class="token operator">-</span> root<span class="token punctuation">.</span><span class="token property-access">width</span>
+            <span class="token punctuation">}</span>
+            walkAnimation<span class="token punctuation">.</span><span class="token method function property-access">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span></span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token property">Component.onCompleted</span><span class="token punctuation">:</span> <span class="token javascript-expression language-javascript"><span class="token punctuation">{</span>
+        <span class="token comment">// 启动行走动画</span>
+        walkAnimation<span class="token punctuation">.</span><span class="token property-access">to</span> <span class="token operator">=</span> <span class="token maybe-class-name">Screen</span><span class="token punctuation">.</span><span class="token property-access">width</span> <span class="token operator">-</span> root<span class="token punctuation">.</span><span class="token property-access">width</span>
+        walkAnimation<span class="token punctuation">.</span><span class="token method function property-access">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span></span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h2 id="10-工具与调试">10. 工具与调试 </h2>
+<h3 id="101-qmlsceneqml-预览器">10.1 qmlscene（QML 预览器） </h3>
+<ul>
+<li><strong>命令</strong>：<code>qmlscene main.qml</code></li>
+<li><strong>用途</strong>：直接运行 QML 文件，无需 Python 代码，适合 UI 原型快速测试。</li>
+</ul>
+<h3 id="102-qmlformat代码格式化">10.2 qmlformat（代码格式化） </h3>
+<ul>
+<li><strong>命令</strong>：<code>qmlformat -i main.qml</code>（<code>-i</code> 表示直接修改文件）</li>
+<li><strong>用途</strong>：自动格式化 QML 代码（统一缩进、换行等）。</li>
+</ul>
+<h3 id="103-qmllint静态检查">10.3 qmllint（静态检查） </h3>
+<ul>
+<li><strong>命令</strong>：<code>qmllint main.qml</code></li>
+<li><strong>用途</strong>：检查语法和潜在问题。</li>
+<li><strong>常见警告</strong>：
+<ul>
+<li><code>Unused import</code> → 删掉未使用的 import 行</li>
+<li><code>Unused property</code> → 删掉未使用的属性</li>
+</ul>
+</li>
+</ul>
+<h3 id="104-qt-creator-集成">10.4 Qt Creator 集成 </h3>
+<ul>
+<li>在 Qt Creator 中打开 <code>.qml</code> 文件，可切换 <strong>“设计”</strong> 模式进行可视化编辑（前提是代码无语法错误）。</li>
+<li><strong>快捷键</strong>：<code>Ctrl + R</code> 运行，<code>Ctrl + Shift + R</code> 运行并附加快捷键。</li>
+</ul>
+<hr>
+<h2 id="11-常见问题速查">11. 常见问题速查 </h2>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>解决办法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>QML module not found</code></td>
+<td>检查 <code>import</code> 版本号是否与 Qt 安装版本匹配（如 <code>6.0</code> 或 <code>2.15</code>）</td>
+</tr>
+<tr>
+<td>设计模式灰色不可点</td>
+<td>确保当前打开的是 <code>.qml</code> 文件且代码无编译错误</td>
+</tr>
+<tr>
+<td>窗口显示但空白</td>
+<td>检查 <code>visible: true</code> 是否设置，或窗口尺寸是否为 0</td>
+</tr>
+<tr>
+<td>信号连接不上</td>
+<td>检查名称拼写（<code>onClicked</code> vs <code>onclicked</code>），以及是否使用了正确的信号名</td>
+</tr>
+<tr>
+<td>透明窗口有杂色</td>
+<td>在 <code>Window</code> 中设置 <code>color: "transparent"</code>，并确保背景没有绘制任何不透明元素</td>
+</tr>
+<tr>
+<td>绑定被破坏（属性不变了）</td>
+<td>检查是否在 JavaScript 中使用了 <code>=</code> 赋值，改用动画或状态切换</td>
+</tr>
+<tr>
+<td>图片加载失败</td>
+<td>检查路径是否正确，本地路径用 <code>file:///</code> 前缀或相对路径，网络图片检查网络</td>
+</tr>
+<tr>
+<td>Python 方法无法从 QML 调用</td>
+<td>确认方法上有 <code>@Slot</code> 装饰器，且对象已通过 <code>setContextProperty</code> 注册</td>
+</tr>
+<tr>
+<td>ListView 不显示数据</td>
+<td>检查 <code>model</code> 是否正确设置，<code>delegate</code> 中的属性名是否与模型角色匹配</td>
+</tr>
+<tr>
+<td>窗口无法拖拽</td>
+<td>检查 <code>MouseArea</code> 的 <code>drag.target</code> 是否设置为 <code>parent</code> 或正确的目标</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="-学习路径建议">📚 学习路径建议 </h2>
+<ol>
+<li><strong>初级阶段</strong>（第1-2天）：熟练掌握 <code>Rectangle</code>, <code>Text</code>, <code>Image</code>，理解锚点布局。</li>
+<li><strong>中级阶段</strong>（第3-5天）：掌握 <code>Button</code>, <code>TextField</code>, <code>MouseArea</code>，实现简单交互。</li>
+<li><strong>进阶阶段</strong>（第6-8天）：学习动画、状态切换、列表视图。</li>
+<li><strong>实战阶段</strong>（第9-12天）：结合 Python，完成一个完整的桌面宠物原型。</li>
+<li><strong>优化阶段</strong>（第13天+）：添加更多宠物交互、换装、AI 对话等高级功能。</li>
+</ol>
+<hr>
+<p><strong>开始你的 QML 之旅</strong>：建议先从 <code>qmlscene</code> 运行一个简单的 <code>Hello World</code> 开始，然后逐步添加控件和动画。结合 Python 后端，你就能开发出功能完整且界面华丽的桌面应用（包括你的桌面宠物）！🎉</p>
+
+      </div>
+      <div class="md-sidebar-toc"><div class="md-toc">
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="0">
+  <a href="#qml-学习完全手册pyside6-整合版" class="md-toc-link">QML 学习完全手册（PySide6 整合版）</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#-目录" class="md-toc-link">📖 目录</a>
+</div>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#1-qml-核心语法" class="md-toc-link">1. QML 核心语法</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#-关于-import-版本的说明" class="md-toc-link">📌 关于 import 版本的说明</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#11-声明对象" class="md-toc-link">1.1 声明对象</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#12-属性绑定property-binding" class="md-toc-link">1.2 属性绑定（Property Binding）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#️-致命陷阱绑定-vs-赋值" class="md-toc-link">⚠️ 致命陷阱：绑定（<code>:</code>） vs 赋值（<code>=</code>）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#13-id标识符" class="md-toc-link">1.3 id（标识符）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#14-锚点anchors" class="md-toc-link">1.4 锚点（anchors）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#15-信号处理器signal-handlers" class="md-toc-link">1.5 信号处理器（Signal Handlers）</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#2-基础元素" class="md-toc-link">2. 基础元素</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#21-rectangle矩形" class="md-toc-link">2.1 Rectangle（矩形）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#22-text文本" class="md-toc-link">2.2 Text（文本）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#23-image图像" class="md-toc-link">2.3 Image（图像）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#24-item基础容器" class="md-toc-link">2.4 Item（基础容器）</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#3-交互控件" class="md-toc-link">3. 交互控件</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#31-button按钮" class="md-toc-link">3.1 Button（按钮）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#32-textfield单行输入框" class="md-toc-link">3.2 TextField（单行输入框）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#33-checkbox复选框" class="md-toc-link">3.3 CheckBox（复选框）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#34-slider滑块" class="md-toc-link">3.4 Slider（滑块）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#35-mousearea鼠标交互区域-桌宠核心组件" class="md-toc-link">3.5 MouseArea（鼠标交互区域）⭐ 桌宠核心组件</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#4-布局与定位" class="md-toc-link">4. 布局与定位</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#41-anchors锚布局" class="md-toc-link">4.1 anchors（锚布局）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#42-row水平排列" class="md-toc-link">4.2 Row（水平排列）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#43-column垂直排列" class="md-toc-link">4.3 Column（垂直排列）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#44-grid网格布局" class="md-toc-link">4.4 Grid（网格布局）</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#5-信号与事件" class="md-toc-link">5. 信号与事件</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#51-内置信号处理器" class="md-toc-link">5.1 内置信号处理器</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#52-自定义信号" class="md-toc-link">5.2 自定义信号</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#53-使用-connections-连接外部信号" class="md-toc-link">5.3 使用 Connections 连接外部信号</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#6-动画系统" class="md-toc-link">6. 动画系统</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#61-propertyanimation属性动画" class="md-toc-link">6.1 PropertyAnimation（属性动画）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#62-numberanimation数值动画" class="md-toc-link">6.2 NumberAnimation（数值动画）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#63-状态与过渡state--transition" class="md-toc-link">6.3 状态与过渡（State &amp; Transition）</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#7-列表模型与视图" class="md-toc-link">7. 列表模型与视图</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#71-listview列表视图" class="md-toc-link">7.1 ListView（列表视图）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#72-listmodel列表模型" class="md-toc-link">7.2 ListModel（列表模型）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#73-loader动态加载器-桌宠换装核心" class="md-toc-link">7.3 Loader（动态加载器）⭐ 桌宠换装核心</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#8-与-pyside6-整合" class="md-toc-link">8. 与 PySide6 整合</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#81-加载-qml-文件" class="md-toc-link">8.1 加载 QML 文件</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#82-从-python-暴露数据给-qml上下文属性" class="md-toc-link">8.2 从 Python 暴露数据给 QML（上下文属性）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#83-从-qml-调用-python-方法槽" class="md-toc-link">8.3 从 QML 调用 Python 方法（槽）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#84-python-列表模型对接-qml-listview--核心进阶" class="md-toc-link">8.4 Python 列表模型对接 QML ListView ⭐ 核心进阶</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#85-信号互连python--qml-双向通信" class="md-toc-link">8.5 信号互连（Python ↔ QML 双向通信）</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#9-桌面宠物必备技巧" class="md-toc-link">9. 桌面宠物必备技巧</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#91-透明窗口" class="md-toc-link">9.1 透明窗口</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#92-无边框--置顶" class="md-toc-link">9.2 无边框 &amp; 置顶</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#93-鼠标穿透让鼠标点击穿透窗口" class="md-toc-link">9.3 鼠标穿透（让鼠标点击穿透窗口）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#94-完整桌宠窗口模板" class="md-toc-link">9.4 完整桌宠窗口模板</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#10-工具与调试" class="md-toc-link">10. 工具与调试</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#101-qmlsceneqml-预览器" class="md-toc-link">10.1 qmlscene（QML 预览器）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#102-qmlformat代码格式化" class="md-toc-link">10.2 qmlformat（代码格式化）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#103-qmllint静态检查" class="md-toc-link">10.3 qmllint（静态检查）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#104-qt-creator-集成" class="md-toc-link">10.4 Qt Creator 集成</a>
+</div>
+</details>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#11-常见问题速查" class="md-toc-link">11. 常见问题速查</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#-学习路径建议" class="md-toc-link">📚 学习路径建议</a>
+</div>
+</details>
+</div>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    
+    
+    
+    
+    
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  
+    </body></html>

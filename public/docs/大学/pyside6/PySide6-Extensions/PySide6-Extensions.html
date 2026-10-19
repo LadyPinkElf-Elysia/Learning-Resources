@@ -1,0 +1,790 @@
+<!DOCTYPE html><html><head>
+      <title>PySide6-Extensions</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-details{margin:0;padding:0;border:none}.markdown-preview .md-toc summary.md-toc-link-wrapper{cursor:pointer;list-style-position:outside}.markdown-preview .md-toc summary.md-toc-link-wrapper::marker{font-size:.85em}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='0']{margin-left:12px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='1']{margin-left:28px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='2']{margin-left:44px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='3']{margin-left:60px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='4']{margin-left:76px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='5']{margin-left:80px}.markdown-preview a.tag,.markdown-preview a.tag:active,.markdown-preview a.tag:link,.markdown-preview a.tag:visited,.markdown-preview span.tag:not(.token){display:inline-block;background-color:var(--vscode-badge-background,rgba(127,127,127,.18));color:var(--vscode-badge-foreground,currentColor);border-radius:2em;font-size:.85em;font-weight:500;padding:.05em .55em;line-height:1.5;white-space:nowrap;text-decoration:none;text-shadow:none;box-shadow:none;transition:background-color .12s ease,opacity .12s ease}.markdown-preview a.tag{cursor:pointer}.markdown-preview a.tag:focus,.markdown-preview a.tag:hover{background-color:var(--vscode-badge-background,rgba(127,127,127,.32));color:var(--vscode-badge-foreground,currentColor);opacity:.85;text-decoration:none;outline:0}.markdown-preview .wikilink-embed-content{border-left:3px solid var(--vscode-textBlockQuote-border,rgba(128,128,128,.3));background:var(--vscode-textBlockQuote-background,rgba(128,128,128,.05));margin:.5em 0;padding:.5em .75em;border-radius:0 3px 3px 0}.markdown-preview .wikilink-embed-content.wikilink-embed-error{border-left-color:var(--vscode-errorForeground,#cf222e);color:var(--vscode-errorForeground,#cf222e);font-style:italic;opacity:.8}.markdown-preview .wikilink-embed-content h1:first-child,.markdown-preview .wikilink-embed-content h2:first-child,.markdown-preview .wikilink-embed-content h3:first-child,.markdown-preview .wikilink-embed-content h4:first-child,.markdown-preview .wikilink-embed-content h5:first-child,.markdown-preview .wikilink-embed-content h6:first-child{margin-top:.25em}.markdown-preview .wikilink-embed-content .wikilink-embed-content{margin:.25em 0;padding:.25em .5em}.markdown-preview .block-id{display:none}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));border:4px solid var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));background-clip:content-box}.scrollbar-style::-webkit-scrollbar-thumb:hover{background-color:var(--vscode-scrollbarSlider-hoverBackground,rgba(120,120,120,.66))}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));border:4px solid var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb:hover{background-color:var(--vscode-scrollbarSlider-hoverBackground,rgba(120,120,120,.66))}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-details{margin:0;padding:0;border:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='0']{padding-left:0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='1']{padding-left:16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='2']{padding-left:32px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='3']{padding-left:48px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='4']{padding-left:64px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='5']{padding-left:80px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script>
+    </head>
+    <body for="html-export">
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="pyside6-extensions">PySide6-Extensions </h1>
+<hr>
+<h2 id="前言本文件涵盖范围">前言：本文件涵盖范围 </h2>
+<p><em>本文件专门用于收录 PySide6 开发中无法归类到基础控件、菜单或基础绘图的“高频遗漏拼图”。涵盖<strong>系统对话框</strong>、<strong>系统托盘</strong>、<strong>独立进程调用</strong>、<strong>大型数据模型（Model-View）</strong>、<strong>网页内嵌引擎</strong>以及<strong>现代 UI 特效</strong>。</em></p>
+<hr>
+<h2 id="一--qcolordialog--标准颜色选择对话框">一、 QColorDialog —— 标准颜色选择对话框 </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtWidgets import QColorDialog</code><br>
+<em>用于让用户从系统的调色板中直观地选择颜色。</em></p>
+<ul>
+<li>
+<p><strong><code>QColorDialog.getColor(initial: QColor = Qt.black, parent: QWidget = None, title: str = "", options: QColorDialog.ColorDialogOptions = QColorDialog.ColorDialogOptions())</code></strong><br>
+<strong>中文</strong>：静态方法，弹出模态颜色选择框<br>
+<strong>返回</strong>：<code>QColor</code> 对象。如果用户取消了操作，则返回一个无效的颜色对象（可通过 <code>color.isValid()</code> 判断）。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtGui <span class="token keyword keyword-import">import</span> QColor
+<span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtWidgets <span class="token keyword keyword-import">import</span> QColorDialog
+
+color <span class="token operator">=</span> QColorDialog<span class="token punctuation">.</span>getColor<span class="token punctuation">(</span>QColor<span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">,</span> <span class="token string">"选择字体颜色"</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-if">if</span> color<span class="token punctuation">.</span>isValid<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"用户选择了颜色: R=</span><span class="token interpolation"><span class="token punctuation">{</span>color<span class="token punctuation">.</span>red<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">, G=</span><span class="token interpolation"><span class="token punctuation">{</span>color<span class="token punctuation">.</span>green<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">, B=</span><span class="token interpolation"><span class="token punctuation">{</span>color<span class="token punctuation">.</span>blue<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>QColorDialog.getColor(initial: QColor, parent: QWidget, title: str, options)</code> 的 <code>options</code> 参数</strong></p>
+<ul>
+<li><code>QColorDialog.ShowAlphaChannel</code>：显示透明度（Alpha）调节滑块。</li>
+<li><code>QColorDialog.NoButtons</code>：不显示“确定”和“取消”按钮（在部分实时预览场景下使用）。</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>color <span class="token operator">=</span> QColorDialog<span class="token punctuation">.</span>getColor<span class="token punctuation">(</span>Qt<span class="token punctuation">.</span>red<span class="token punctuation">,</span> self<span class="token punctuation">,</span> <span class="token string">"选择透明色"</span><span class="token punctuation">,</span> QColorDialog<span class="token punctuation">.</span>ShowAlphaChannel<span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setCurrentColor(color: QColor)</code></strong> / <strong><code>currentColor()</code></strong><br>
+<strong>中文</strong>：在对话框实例化后动态设置/获取当前颜色。</p>
+</li>
+<li>
+<p><strong><code>setOption(option: QColorDialog.ColorDialogOption, on: bool = True)</code></strong><br>
+<strong>中文</strong>：动态开启或关闭对话框的某个选项。</p>
+</li>
+</ul>
+<h3 id="-qcolordialog-的核心信号">🟢 QColorDialog 的核心信号 </h3>
+<ul>
+<li><strong><code>currentColorChanged(color: QColor)</code></strong>：用户在调色板上拖动或切换颜色时发射（用于实时预览）。</li>
+<li><strong><code>colorSelected(color: QColor)</code></strong>：用户最终点击确定后发射。</li>
+</ul>
+<hr>
+<h2 id="二--qfontdialog--标准字体选择对话框">二、 QFontDialog —— 标准字体选择对话框 </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtWidgets import QFontDialog</code><br>
+<em>用于让用户选择字体、字号、粗细和斜体等排版属性。</em></p>
+<ul>
+<li><strong><code>QFontDialog.getFont(initial: QFont = None, parent: QWidget = None, title: str = "")</code></strong><br>
+<strong>中文</strong>：静态方法，弹出模态字体选择框<br>
+<strong>返回</strong>：一个元组 <code>(QFont, bool)</code>。如果用户点击了确定，返回字体实例和 <code>True</code>；如果点击取消，返回空字体和 <code>False</code>。<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtGui <span class="token keyword keyword-import">import</span> QFont
+<span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtWidgets <span class="token keyword keyword-import">import</span> QFontDialog
+
+font<span class="token punctuation">,</span> ok <span class="token operator">=</span> QFontDialog<span class="token punctuation">.</span>getFont<span class="token punctuation">(</span>QFont<span class="token punctuation">(</span><span class="token string">"Arial"</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">,</span> <span class="token string">"选择编辑器字体"</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-if">if</span> ok<span class="token punctuation">:</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"用户选择了字体: </span><span class="token interpolation"><span class="token punctuation">{</span>font<span class="token punctuation">.</span>family<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">, 大小: </span><span class="token interpolation"><span class="token punctuation">{</span>font<span class="token punctuation">.</span>pointSize<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="-qfontdialog-的核心信号">🟢 QFontDialog 的核心信号 </h3>
+<ul>
+<li><strong><code>currentFontChanged(font: QFont)</code></strong>：用户在字体预览界面切换字体时实时发射。</li>
+<li><strong><code>fontSelected(font: QFont)</code></strong>：用户点击确定后发射。</li>
+</ul>
+<hr>
+<h2 id="三--qprogressdialog--模态进度对话框处理耗时操作">三、 QProgressDialog —— 模态进度对话框（处理耗时操作） </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtWidgets import QProgressDialog</code><br>
+<em>相比于 <code>QProgressBar</code>，<code>QProgressDialog</code> 是一个独立的弹窗，自带“取消”按钮，专门用于处理<strong>阻塞主线程的耗时同步操作</strong>。</em></p>
+<ul>
+<li>
+<p><strong><code>QProgressDialog(labelText: str, cancelButtonText: str, minimum: int, maximum: int, parent: QWidget = None)</code></strong><br>
+<strong>中文</strong>：构造函数<br>
+<strong>参数</strong>：</p>
+<ul>
+<li><code>labelText</code> – 提示文字（如“正在复制文件...”）。</li>
+<li><code>cancelButtonText</code> – 取消按钮的文字（如“取消”）。</li>
+<li><code>minimum</code> / <code>maximum</code> – 进度条的范围。</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>progress_dialog <span class="token operator">=</span> QProgressDialog<span class="token punctuation">(</span><span class="token string">"正在处理数据..."</span><span class="token punctuation">,</span> <span class="token string">"取消"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
+progress_dialog<span class="token punctuation">.</span>setWindowModality<span class="token punctuation">(</span>Qt<span class="token punctuation">.</span>WindowModal<span class="token punctuation">)</span> <span class="token comment"># 设置模态阻塞父窗口</span>
+progress_dialog<span class="token punctuation">.</span>setMinimumDuration<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment"># 强制立刻显示，不延迟</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setValue(value: int)</code></strong><br>
+<strong>中文</strong>：更新进度值，并会自动更新百分比显示。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-for">for</span> i <span class="token keyword keyword-in">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">101</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    progress_dialog<span class="token punctuation">.</span>setValue<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+    <span class="token comment"># 注意：如果是耗时计算，可以用 QApplication.processEvents() 保持界面响应</span>
+    <span class="token keyword keyword-if">if</span> progress_dialog<span class="token punctuation">.</span>wasCanceled<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword keyword-break">break</span>
+progress_dialog<span class="token punctuation">.</span>setValue<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token comment"># 达到最大值，对话框会自动关闭</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>wasCanceled()</code></strong><br>
+<strong>中文</strong>：判断用户是否点击了取消按钮。<br>
+<strong>作用</strong>：在循环中每次更新进度时，必须检查此状态。如果返回 <code>True</code>，应立即跳出循环并中止操作。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-if">if</span> progress_dialog<span class="token punctuation">.</span>wasCanceled<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"操作被用户主动取消"</span><span class="token punctuation">)</span>
+    <span class="token keyword keyword-break">break</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setAutoClose(close: bool)</code></strong> / <strong><code>setAutoReset(reset: bool)</code></strong><br>
+<strong>中文</strong>：</p>
+<ul>
+<li><code>setAutoClose(True)</code>：进度达到 100% 时自动关闭对话框（默认开启）。</li>
+<li><code>setAutoReset(True)</code>：进度达到 100% 时重置进度条状态（默认开启）。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>setCancelButtonText(text: str)</code></strong><br>
+<strong>中文</strong>：动态修改取消按钮上的文字。</p>
+</li>
+</ul>
+<h3 id="-qprogressdialog-的核心信号">🟢 QProgressDialog 的核心信号 </h3>
+<ul>
+<li><strong><code>canceled()</code></strong>：当用户点击“取消”按钮或按下 <code>ESC</code> 键时发射。</li>
+</ul>
+<hr>
+<h2 id="四--qsystemtrayicon--系统托盘图标后台常驻程序">四、 QSystemTrayIcon —— 系统托盘图标（后台常驻程序） </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtWidgets import QSystemTrayIcon, QMenu</code><br>
+<em>用于将桌面应用的最小化图标放入操作系统任务栏的托盘通知区域。</em></p>
+<ul>
+<li>
+<p><strong><code>QSystemTrayIcon(parent: QWidget = None)</code></strong> / <strong><code>QSystemTrayIcon(icon: QIcon, parent: QWidget = None)</code></strong><br>
+<strong>中文</strong>：构造托盘图标对象。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtWidgets <span class="token keyword keyword-import">import</span> QSystemTrayIcon<span class="token punctuation">,</span> QMenu
+<span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtGui <span class="token keyword keyword-import">import</span> QIcon
+
+tray <span class="token operator">=</span> QSystemTrayIcon<span class="token punctuation">(</span>QIcon<span class="token punctuation">(</span><span class="token string">"app_icon.png"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setIcon(icon: QIcon)</code></strong> / <strong><code>icon()</code></strong><br>
+<strong>中文</strong>：设置/获取托盘的图标。</p>
+</li>
+<li>
+<p><strong><code>setToolTip(tip: str)</code></strong> / <strong><code>toolTip()</code></strong><br>
+<strong>中文</strong>：设置/获取鼠标悬停在托盘图标上时显示的气泡提示文字。</p>
+</li>
+<li>
+<p><strong><code>setContextMenu(menu: QMenu)</code></strong><br>
+<strong>中文</strong>：绑定右键点击托盘图标时弹出的上下文菜单。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>menu <span class="token operator">=</span> QMenu<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+menu<span class="token punctuation">.</span>addAction<span class="token punctuation">(</span><span class="token string">"打开主窗口"</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>showNormal<span class="token punctuation">)</span>
+menu<span class="token punctuation">.</span>addAction<span class="token punctuation">(</span><span class="token string">"退出程序"</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>close<span class="token punctuation">)</span>
+tray<span class="token punctuation">.</span>setContextMenu<span class="token punctuation">(</span>menu<span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>show()</code></strong> / <strong><code>hide()</code></strong> / <strong><code>isVisible()</code></strong><br>
+<strong>中文</strong>：显示/隐藏/判断托盘图标是否可见。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>tray<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>showMessage(title: str, message: str, icon: QSystemTrayIcon.MessageIcon = QSystemTrayIcon.MessageIcon.Information, millisecondsTimeoutHint: int = 10000)</code></strong><br>
+<strong>中文</strong>：在托盘区域弹出系统级的“气泡通知”（类似微信新消息提示）。<br>
+<strong>参数</strong>：</p>
+<ul>
+<li><code>icon</code>：通知类型，如 <code>QSystemTrayIcon.Information</code>（信息）、<code>QSystemTrayIcon.Warning</code>（警告）、<code>QSystemTrayIcon.Critical</code>（错误）。</li>
+<li><code>millisecondsTimeoutHint</code>：显示的时间（毫秒），默认 10 秒。</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>tray<span class="token punctuation">.</span>showMessage<span class="token punctuation">(</span><span class="token string">"同步完成"</span><span class="token punctuation">,</span> <span class="token string">"您的文件已经备份到云端！"</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="-qsystemtrayicon-的核心信号">🟢 QSystemTrayIcon 的核心信号 </h3>
+<ul>
+<li><strong><code>activated(reason: QSystemTrayIcon.ActivationReason)</code></strong>：用户在托盘图标上执行操作时发射。<br>
+<strong>参数</strong>：判断用户做了什么，如 <code>QSystemTrayIcon.Trigger</code>（左键单击）、<code>QSystemTrayIcon.DoubleClick</code>（左键双击）、<code>QSystemTrayIcon.Context</code>（右键单击，菜单会由 <code>setContextMenu</code> 自动接管）。<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># 经典用法：左键点击恢复主窗口</span>
+tray<span class="token punctuation">.</span>activated<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token keyword keyword-lambda">lambda</span> reason<span class="token punctuation">:</span> self<span class="token punctuation">.</span>showNormal<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-if">if</span> reason <span class="token operator">==</span> QSystemTrayIcon<span class="token punctuation">.</span>Trigger <span class="token keyword keyword-else">else</span> <span class="token boolean">None</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="五--qmovie--动态图片播放器gif-动画">五、 QMovie —— 动态图片播放器（GIF 动画） </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtGui import QMovie</code><br>
+<em><code>QMovie</code> 不是控件，但它配合 <code>QLabel</code> 可以轻松播放动态 GIF 图片。</em></p>
+<ul>
+<li>
+<p><strong><code>QMovie(filename: str, parent: QObject = None)</code></strong> / <strong><code>QMovie()</code></strong><br>
+<strong>中文</strong>：构造函数，可以传入本地 GIF 文件的路径，或稍后用 <code>setFileName()</code> 指定。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtGui <span class="token keyword keyword-import">import</span> QMovie
+<span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtWidgets <span class="token keyword keyword-import">import</span> QLabel
+
+movie <span class="token operator">=</span> QMovie<span class="token punctuation">(</span><span class="token string">"loading.gif"</span><span class="token punctuation">)</span> <span class="token comment"># 创建 GIF 播放器</span>
+label <span class="token operator">=</span> QLabel<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+label<span class="token punctuation">.</span>setMovie<span class="token punctuation">(</span>movie<span class="token punctuation">)</span>         <span class="token comment"># 将标签和动画绑定</span>
+movie<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>                 <span class="token comment"># 开始播放</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>start()</code></strong> / <strong><code>stop()</code></strong><br>
+<strong>中文</strong>：开始播放 / 停止播放动画。</p>
+</li>
+<li>
+<p><strong><code>setPaused(paused: bool)</code></strong><br>
+<strong>中文</strong>：暂停或恢复当前帧的显示。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>movie<span class="token punctuation">.</span>setPaused<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token comment"># 暂停在当前帧</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setSpeed(percent: int)</code></strong><br>
+<strong>中文</strong>：设置播放速度。默认 <code>100</code>（正常速度），设为 <code>50</code> 则变慢一半，<code>200</code> 则快一倍。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>movie<span class="token punctuation">.</span>setSpeed<span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span> <span class="token comment"># 两倍速播放</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setFileName(filename: str)</code></strong> / <strong><code>fileName()</code></strong><br>
+<strong>中文</strong>：设置/获取播放的 GIF 文件路径。</p>
+</li>
+<li>
+<p><strong><code>frameCount()</code></strong><br>
+<strong>中文</strong>：返回 GIF 动画的总帧数。如果无法读取，返回 <code>-1</code>。</p>
+</li>
+<li>
+<p><strong><code>currentPixmap()</code></strong><br>
+<strong>中文</strong>：获取当前播放帧的 <code>QPixmap</code> 图片对象。<br>
+<strong>作用</strong>：如果你不想用 <code>QLabel</code> 显示，而是想在 <code>QPainter</code> 的 <code>paintEvent</code> 中自己画出这一帧，调用此方法拿到原始图。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">paintEvent</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> event<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-if">if</span> self<span class="token punctuation">.</span>movie<span class="token punctuation">.</span>state<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> QMovie<span class="token punctuation">.</span>Running<span class="token punctuation">:</span>
+        painter<span class="token punctuation">.</span>drawPixmap<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>movie<span class="token punctuation">.</span>currentPixmap<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="-qmovie-的核心信号">🟢 QMovie 的核心信号 </h3>
+<ul>
+<li><strong><code>frameChanged(frameNumber: int)</code></strong>：每当动画切换到下一帧时触发。</li>
+<li><strong><code>started()</code></strong> / <strong><code>finished()</code></strong>：动画开始播放 / 播放结束时触发。</li>
+<li><strong><code>stateChanged(state: QMovie.MovieState)</code></strong>：播放状态（停止、暂停、播放）发生变化时触发。</li>
+</ul>
+<hr>
+<h2 id="六--qwebengineview--内嵌网页浏览器需独立安装包">六、 QWebEngineView —— 内嵌网页浏览器（需独立安装包） </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtWebEngineWidgets import QWebEngineView</code><br>
+<em>⚠️ 警告：此模块不是 PySide6 默认核心库！需要手动安装：<code>pip install PySide6-WebEngine</code>。</em><br>
+<em>它为你的桌面应用提供一个现代、全功能的 Chromium 浏览器内核。</em></p>
+<ul>
+<li>
+<p><strong><code>QWebEngineView(parent: QWidget = None)</code></strong><br>
+<strong>中文</strong>：构造函数，创建一个独立的网页视图控件。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtWebEngineWidgets <span class="token keyword keyword-import">import</span> QWebEngineView
+<span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtCore <span class="token keyword keyword-import">import</span> QUrl
+
+webview <span class="token operator">=</span> QWebEngineView<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+webview<span class="token punctuation">.</span>load<span class="token punctuation">(</span>QUrl<span class="token punctuation">(</span><span class="token string">"https://www.baidu.com"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+webview<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>load(url: QUrl)</code></strong> / <strong><code>setUrl(url: QUrl)</code></strong><br>
+<strong>中文</strong>：加载指定网址。通常用 <code>QUrl("https://...")</code> 包裹字符串。推荐使用 <code>load</code>，因为它支持参数传递。</p>
+</li>
+<li>
+<p><strong><code>setHtml(html: str, baseUrl: QUrl = QUrl())</code></strong><br>
+<strong>中文</strong>：直接加载一段 HTML 字符串作为网页内容。常用于做复杂的富文本设置界面。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>webview<span class="token punctuation">.</span>setHtml<span class="token punctuation">(</span><span class="token string">"&lt;h1&gt;自定义界面&lt;/h1&gt;&lt;button&gt;点我&lt;/button&gt;"</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>back()</code></strong> / <strong><code>forward()</code></strong> / <strong><code>reload()</code></strong> / <strong><code>stop()</code></strong><br>
+<strong>中文</strong>：控制网页导航：后退、前进、刷新、停止加载。</p>
+</li>
+<li>
+<p><strong><code>page()</code></strong><br>
+<strong>中文</strong>：返回与视图绑定的 <code>QWebEnginePage</code> 对象。</p>
+</li>
+<li>
+<p><strong><code>page().runJavaScript(script: str, callback: Callable)</code></strong><br>
+<strong>中文</strong>：在网页中注入并执行一段 JavaScript 代码，极其强大。<br>
+<strong>作用</strong>：可以让你通过 JS 获取网页上的数据，并回调给 Python。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-def">def</span> <span class="token function">handle_result</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"网页中获取到的标题是: </span><span class="token interpolation"><span class="token punctuation">{</span>result<span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span>
+
+webview<span class="token punctuation">.</span>page<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>runJavaScript<span class="token punctuation">(</span><span class="token string">"document.title"</span><span class="token punctuation">,</span> handle_result<span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="-qwebengineview-的核心信号">🟢 QWebEngineView 的核心信号 </h3>
+<ul>
+<li><strong><code>loadStarted()</code></strong>：网页开始加载时触发。</li>
+<li><strong><code>loadFinished(ok: bool)</code></strong>：网页加载完成（或失败）时触发，<code>ok</code> 为布尔值。</li>
+<li><strong><code>loadProgress(progress: int)</code></strong>：网页加载进度更新时触发（返回 0-100 的整数）。</li>
+<li><strong><code>urlChanged(url: QUrl)</code></strong>：当前网页的 URL 发生跳转（如点击了链接）时触发。</li>
+</ul>
+<hr>
+<h2 id="七--模型-视图架构model-view-处理海量数据的终极武器">七、 模型-视图架构（Model-View）—— 处理海量数据的终极武器 </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtWidgets import QTreeView, QTableView</code> ; <code>from PySide6.QtCore import QFileSystemModel</code><br>
+<em>我们之前学了 <code>QTreeWidget</code> 和 <code>QTableWidget</code>，它们是“便利类”，数据直接存在内存里。一旦要显示 10 万个文件，程序会直接卡死。真正的工业化方案是“模型-视图”架构（数据与显示彻底分离）。</em></p>
+<p><strong>经典案例：用 <code>QFileSystemModel</code> + <code>QTreeView</code> 做极速文件浏览器</strong></p>
+<ul>
+<li>
+<p><strong><code>QFileSystemModel(parent: QObject = None)</code></strong><br>
+<strong>中文</strong>：专门读取本地文件系统的数据模型，它是异步加载的，即使硬盘上有 10 万个文件，也<strong>绝不会卡住主界面</strong>。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtWidgets <span class="token keyword keyword-import">import</span> QTreeView
+<span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtCore <span class="token keyword keyword-import">import</span> QFileSystemModel<span class="token punctuation">,</span> QDir
+
+model <span class="token operator">=</span> QFileSystemModel<span class="token punctuation">(</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>setRootPath<span class="token punctuation">(</span>QDir<span class="token punctuation">.</span>currentPath<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># 设置要监视的根目录</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>QTreeView(parent: QWidget = None)</code></strong><br>
+<strong>中文</strong>：与 <code>QTreeWidget</code> 不同，它只是纯粹负责“画”的视图。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>treeview <span class="token operator">=</span> QTreeView<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+treeview<span class="token punctuation">.</span>setModel<span class="token punctuation">(</span>model<span class="token punctuation">)</span> <span class="token comment"># 将模型与视图绑定</span>
+treeview<span class="token punctuation">.</span>setRootIndex<span class="token punctuation">(</span>model<span class="token punctuation">.</span>index<span class="token punctuation">(</span>QDir<span class="token punctuation">.</span>currentPath<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># 设置显示的根节点</span>
+</code></pre>
+</li>
+<li>
+<p><strong>模型-视图的优势</strong>：</p>
+<ol>
+<li><strong>占用内存极低</strong>：模型只负责提供所需的那几行数据，不会把 10 万行数据全部读取到内存。</li>
+<li><strong>数据与界面隔离</strong>：你可以随时替换 <code>QFileSystemModel</code> 为 <code>QStandardItemModel</code> 或自定义模型，视图完全不需要修改。</li>
+<li><strong>支持排序与过滤</strong>：模型层提供了原生的 <code>sort()</code> 和 <code>QSortFilterProxyModel</code> 来过滤数据。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="八--qprocess--独立子进程管理系统命令调用">八、 QProcess —— 独立子进程管理（系统命令调用） </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtCore import QProcess</code><br>
+<em><code>QProcess</code> 与 <code>QThread</code> 是两条完全不同的技术线。它用于在程序中启动一个外部的操作系统程序（如 <code>cmd.exe</code>、<code>python.exe</code>、<code>ffmpeg.exe</code>），并向其发送数据或读取它的控制台输出。</em></p>
+<ul>
+<li>
+<p><strong><code>QProcess(parent: QObject = None)</code></strong><br>
+<strong>中文</strong>：构造进程管理对象。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtCore <span class="token keyword keyword-import">import</span> QProcess
+
+process <span class="token operator">=</span> QProcess<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>start(command: str, arguments: list = [])</code></strong><br>
+<strong>中文</strong>：启动外部程序，并带参数。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>process<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token string">"ping"</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">"www.baidu.com"</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment"># 执行 ping 命令</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>waitForStarted(msecs: int = 30000)</code></strong><br>
+<strong>中文</strong>：阻塞等待，直到子进程成功启动。返回布尔值。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-if">if</span> process<span class="token punctuation">.</span>waitForStarted<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"子进程启动成功"</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>write(data: bytes)</code></strong><br>
+<strong>中文</strong>：向子进程的标准输入（stdin）写入数据。常用于与子程序进行实时交互。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>process<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">b"hello\n"</span><span class="token punctuation">)</span> <span class="token comment"># 发送数据</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>readAllStandardOutput()</code></strong> / <strong><code>readAllStandardError()</code></strong><br>
+<strong>中文</strong>：读取子进程的控制台输出（<code>stdout</code>）和错误流（<code>stderr</code>）。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>process<span class="token punctuation">.</span>waitForFinished<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment"># 等待进程执行完毕</span>
+output <span class="token operator">=</span> process<span class="token punctuation">.</span>readAllStandardOutput<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>data<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setWorkingDirectory(dir: str)</code></strong><br>
+<strong>中文</strong>：设置子进程的工作目录。</p>
+</li>
+<li>
+<p><strong><code>kill()</code></strong> / <strong><code>terminate()</code></strong><br>
+<strong>中文</strong>：<code>terminate()</code> 会尝试安全关闭程序（发送终止信号）。<code>kill()</code> 会<strong>强制、立即</strong>暴力杀掉进程。</p>
+</li>
+</ul>
+<h3 id="-qprocess-的核心信号">🟢 QProcess 的核心信号 </h3>
+<ul>
+<li><strong><code>started()</code></strong>：进程成功启动时发射。</li>
+<li><strong><code>readyReadStandardOutput()</code></strong>：子进程向控制台输出了新的内容时触发。可以配合 <code>readAllStandardOutput()</code> 抓取实时输出。<pre data-role="codeBlock" data-info="python" class="language-python python"><code>process<span class="token punctuation">.</span>readyReadStandardOutput<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token keyword keyword-lambda">lambda</span><span class="token punctuation">:</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>readAllStandardOutput<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>data<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li><strong><code>finished(exitCode: int, exitStatus: QProcess.ExitStatus)</code></strong>：子进程执行完毕时发射。</li>
+</ul>
+<hr>
+<h2 id="九--qshortcut--独立的键盘快捷方式">九、 QShortcut —— 独立的键盘快捷方式 </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtGui import QShortcut</code><br>
+<em>与 <code>QAction</code> 不同，<code>QShortcut</code> 是一个纯粹的独立对象，不需要挂载到菜单栏或工具栏上。它可以在任何 <code>QWidget</code> 中捕获全局或局部的快捷键。</em></p>
+<ul>
+<li>
+<p><strong><code>QShortcut(keySequence: QKeySequence, parent: QWidget)</code></strong><br>
+<strong>中文</strong>：构造一个绑定到特定 <code>parent</code> 控件的快捷键。<br>
+<strong>参数</strong>：</p>
+<ul>
+<li><code>keySequence</code>：键盘序列，如 <code>"Ctrl+F"</code>，或 <code>Qt.Key_F5</code>。</li>
+<li><code>parent</code>：绑定的目标控件。快捷键仅在此控件或其子控件获得焦点时才生效。</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtGui <span class="token keyword keyword-import">import</span> QShortcut
+<span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtCore <span class="token keyword keyword-import">import</span> Qt
+
+shortcut <span class="token operator">=</span> QShortcut<span class="token punctuation">(</span>Qt<span class="token punctuation">.</span>Key_F1<span class="token punctuation">,</span> self<span class="token punctuation">)</span> <span class="token comment"># 按 F1 键</span>
+shortcut<span class="token punctuation">.</span>activated<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token keyword keyword-lambda">lambda</span><span class="token punctuation">:</span> <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"帮组功能被触发"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setAutoRepeat(on: bool)</code></strong> / <strong><code>autoRepeat()</code></strong><br>
+<strong>中文</strong>：设置/获取按键长按时是否自动重复触发 <code>activated</code> 信号。</p>
+</li>
+<li>
+<p><strong><code>setEnabled(on: bool)</code></strong> / <strong><code>isEnabled()</code></strong><br>
+<strong>中文</strong>：设置/获取是否启用此快捷方式。</p>
+</li>
+<li>
+<p><strong><code>setContext(context: Qt.ShortcutContext)</code></strong><br>
+<strong>中文</strong>：设置快捷键的作用域。<br>
+<strong>参数</strong>：</p>
+<ul>
+<li><code>Qt.WindowShortcut</code>：仅在当前窗口获得焦点时生效（默认）。</li>
+<li><code>Qt.ApplicationShortcut</code>：全局快捷键，即使应用在后台，按下也有效。</li>
+<li><code>Qt.WidgetShortcut</code>：仅在父控件获得焦点时生效。</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>global_shortcut <span class="token operator">=</span> QShortcut<span class="token punctuation">(</span><span class="token string">"Ctrl+Alt+M"</span><span class="token punctuation">,</span> self<span class="token punctuation">)</span>
+global_shortcut<span class="token punctuation">.</span>setContext<span class="token punctuation">(</span>Qt<span class="token punctuation">.</span>ApplicationShortcut<span class="token punctuation">)</span> <span class="token comment"># 全局唤起主窗口</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="-qshortcut-的核心信号">🟢 QShortcut 的核心信号 </h3>
+<ul>
+<li><strong><code>activated()</code></strong>：用户按下设定的快捷键组合时立即触发。</li>
+</ul>
+<hr>
+<h2 id="十--qgraphicseffect--现代-ui-特效引擎阴影与透明">十、 QGraphicsEffect —— 现代 UI 特效引擎（阴影与透明） </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtWidgets import QGraphicsDropShadowEffect, QGraphicsOpacityEffect</code><br>
+<em>这两个效果不是通过 <code>QPainter</code> 底层绘制出来的，它们是挂载在任何 <code>QWidget</code> 控件上的高阶外观装饰器。</em></p>
+<h3 id="101-qgraphicsdropshadoweffect投影阴影">10.1 QGraphicsDropShadowEffect（投影阴影） </h3>
+<ul>
+<li>
+<p><strong><code>QGraphicsDropShadowEffect(parent: QObject = None)</code></strong><br>
+<strong>中文</strong>：构造阴影特效对象。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtWidgets <span class="token keyword keyword-import">import</span> QGraphicsDropShadowEffect
+<span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtGui <span class="token keyword keyword-import">import</span> QColor
+
+shadow <span class="token operator">=</span> QGraphicsDropShadowEffect<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+widget<span class="token punctuation">.</span>setGraphicsEffect<span class="token punctuation">(</span>shadow<span class="token punctuation">)</span> <span class="token comment"># 应用阴影特效</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setBlurRadius(blurRadius: float)</code></strong><br>
+<strong>中文</strong>：设置阴影的模糊半径（像素）。数值越大，阴影越飘散；数值越小，阴影越硬。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>shadow<span class="token punctuation">.</span>setBlurRadius<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setColor(color: QColor)</code></strong><br>
+<strong>中文</strong>：设置阴影的颜色。默认是半透明黑色 <code>Qt.black</code>，你可以改成带透明度的红色、蓝色等。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>shadow<span class="token punctuation">.</span>setColor<span class="token punctuation">(</span>QColor<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># 黑色带 100 的透明度</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setOffset(dx: float, dy: float)</code></strong> / <strong><code>setXOffset(x: float)</code></strong> / <strong><code>setYOffset(y: float)</code></strong><br>
+<strong>中文</strong>：设置阴影相对于控件的偏移量（像素）。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>shadow<span class="token punctuation">.</span>setOffset<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token comment"># 向右下方偏移 5 像素</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="102-qgraphicsopacityeffect透明度淡入淡出">10.2 QGraphicsOpacityEffect（透明度/淡入淡出） </h3>
+<ul>
+<li>
+<p><strong><code>QGraphicsOpacityEffect(parent: QObject = None)</code></strong><br>
+<strong>中文</strong>：构造透明度特效对象。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtWidgets <span class="token keyword keyword-import">import</span> QGraphicsOpacityEffect
+
+opacity <span class="token operator">=</span> QGraphicsOpacityEffect<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+widget<span class="token punctuation">.</span>setGraphicsEffect<span class="token punctuation">(</span>opacity<span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setOpacity(opacity: float)</code></strong><br>
+<strong>中文</strong>：设置控件的透明度。范围 <code>0.0</code>（完全透明/消失）到 <code>1.0</code>（完全不透明）。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>opacity<span class="token punctuation">.</span>setOpacity<span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">)</span> <span class="token comment"># 让控件变成半透明</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setOpacityMask(mask: QBitmap)</code></strong><br>
+<strong>中文</strong>：设置透明度遮罩位图。<br>
+<strong>作用</strong>：让你可以传入一个黑白的 <code>QBitmap</code>，让控件呈现出被裁切或渐变透明的复杂异形效果（如手电筒探照灯效果）。</p>
+</li>
+</ul>
+<hr>
+<h2 id="十一--qfile-qdir-与-qfileinfo--底层文件系统操作">十一、 QFile、QDir 与 QFileInfo —— 底层文件系统操作 </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtCore import QFile, QDir, QFileInfo</code><br>
+<em>虽然 Python 原生提供了强大的文件操作，但在 PySide6 环境中，结合 <code>QFileDialog</code> 获取的路径，使用 Qt 原生封装类能够提供更好的跨平台兼容性和信号槽事件支持。</em></p>
+<ul>
+<li>
+<p><strong><code>QFile(fileName: str)</code></strong><br>
+<strong>中文</strong>：构造一个文件操作对象。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token builtin">file</span> <span class="token operator">=</span> QFile<span class="token punctuation">(</span><span class="token string">"C:/Users/test.txt"</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>open(mode: QIODeviceBase.OpenModeFlag)</code></strong><br>
+<strong>中文</strong>：以指定模式打开文件。<br>
+<strong>常用参数</strong>：<code>QIODeviceBase.ReadOnly</code>（只读）、<code>QIODeviceBase.WriteOnly</code>（只写/覆盖）、<code>QIODeviceBase.ReadWrite</code>（读写）、<code>QIODeviceBase.Append</code>（追加）、<code>QIODeviceBase.Text</code>（文本模式）。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-if">if</span> <span class="token builtin">file</span><span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span>QIODeviceBase<span class="token punctuation">.</span>ReadOnly <span class="token operator">|</span> QIODeviceBase<span class="token punctuation">.</span>Text<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 读取文件...</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>readAll()</code></strong><br>
+<strong>中文</strong>：读取文件所有内容，返回 <code>QByteArray</code>。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>content <span class="token operator">=</span> <span class="token builtin">file</span><span class="token punctuation">.</span>readAll<span class="token punctuation">(</span><span class="token punctuation">)</span>
+text <span class="token operator">=</span> content<span class="token punctuation">.</span>data<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token comment"># 转为字符串</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>write(data: bytes)</code></strong> / <strong><code>write(data: QByteArray)</code></strong><br>
+<strong>中文</strong>：向文件写入二进制或文本数据。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token builtin">file</span><span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"这是写入的内容"</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>close()</code></strong><br>
+<strong>中文</strong>：关闭文件句柄，释放系统资源（务必在读写后调用，或使用 Python 上下文管理器 <code>with</code>）。</p>
+</li>
+<li>
+<p><strong><code>exists(fileName: str)</code></strong><br>
+<strong>中文</strong>：<strong>静态方法</strong>，判断指定路径的文件是否存在。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-if">if</span> QFile<span class="token punctuation">.</span>exists<span class="token punctuation">(</span><span class="token string">"config.ini"</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span><span class="token string">"配置文件存在"</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>remove()</code></strong> / <strong><code>rename(newName: str)</code></strong> / <strong><code>copy(newName: str)</code></strong><br>
+<strong>中文</strong>：删除、重命名或复制当前文件对象所指向的文件。</p>
+</li>
+<li>
+<p><strong><code>QDir(path: str)</code></strong><br>
+<strong>中文</strong>：构造一个目录操作对象。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token builtin">dir</span> <span class="token operator">=</span> QDir<span class="token punctuation">(</span><span class="token string">"C:/Users"</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>entryList(filters: QDir.Filters = QDir.Filters.NoFilter)</code></strong><br>
+<strong>中文</strong>：获取该目录下的所有文件名和目录名列表，返回 <code>QStringList</code>。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-for">for</span> file_name <span class="token keyword keyword-in">in</span> <span class="token builtin">dir</span><span class="token punctuation">.</span>entryList<span class="token punctuation">(</span>QDir<span class="token punctuation">.</span>Files<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-print">print</span><span class="token punctuation">(</span>file_name<span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>exists(path: str)</code></strong> / <strong><code>mkdir(path: str)</code></strong> / <strong><code>rmdir(path: str)</code></strong><br>
+<strong>中文</strong>：静态检查目录是否存在、创建新目录、删除空目录。</p>
+</li>
+<li>
+<p><strong><code>QFileInfo(file: str)</code></strong><br>
+<strong>中文</strong>：构造一个文件信息查询对象。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>info <span class="token operator">=</span> QFileInfo<span class="token punctuation">(</span><span class="token string">"C:/Users/test.txt"</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong>常用属性获取方法</strong>：</p>
+<ul>
+<li><code>exists()</code>：是否存在。</li>
+<li><code>size()</code>：文件大小（字节）。</li>
+<li><code>fileName()</code>：文件名（包含后缀）。</li>
+<li><code>baseName()</code>：不含后缀的文件名。</li>
+<li><code>suffix()</code>：文件后缀（如 "txt"）。</li>
+<li><code>absoluteFilePath()</code>：文件的绝对路径。</li>
+<li><code>lastModified()</code>：最后修改时间。</li>
+<li><code>isDir()</code> / <code>isFile()</code>：判断是目录还是文件。</li>
+</ul>
+</li>
+</ul>
+<h2 id="十二--qundostack--撤销与重做栈商业级应用必备">十二、 QUndoStack —— 撤销与重做栈（商业级应用必备） </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtCore import QUndoStack, QUndoCommand</code><br>
+<em>在文本编辑器、画图板等软件中，允许用户撤销（Ctrl+Z）和重做（Ctrl+Y）操作是最核心的功能。QT 提供了完美的 <code>QUndoStack</code> 来管理这些状态。</em></p>
+<ul>
+<li>
+<p><strong><code>QUndoStack(parent: QObject = None)</code></strong><br>
+<strong>中文</strong>：构造一个撤销栈对象。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>undo_stack <span class="token operator">=</span> QUndoStack<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>push(command: QUndoCommand)</code></strong><br>
+<strong>中文</strong>：向栈中压入一个新的操作（动作）。这个动作会被执行，并记录进栈中。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtWidgets <span class="token keyword keyword-import">import</span> QUndoCommand
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">InsertTextCommand</span><span class="token punctuation">(</span>QUndoCommand<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> document<span class="token punctuation">,</span> text<span class="token punctuation">,</span> pos<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token string">"插入文字"</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>doc <span class="token operator">=</span> document
+        self<span class="token punctuation">.</span>text <span class="token operator">=</span> text
+        self<span class="token punctuation">.</span>pos <span class="token operator">=</span> pos
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">redo</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 执行操作</span>
+        self<span class="token punctuation">.</span>doc<span class="token punctuation">.</span>insert<span class="token punctuation">(</span>self<span class="token punctuation">.</span>pos<span class="token punctuation">,</span> self<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+
+    <span class="token keyword keyword-def">def</span> <span class="token function">undo</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 撤销操作</span>
+        self<span class="token punctuation">.</span>doc<span class="token punctuation">.</span>remove<span class="token punctuation">(</span>self<span class="token punctuation">.</span>pos<span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>text<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 在业务代码中：</span>
+cmd <span class="token operator">=</span> InsertTextCommand<span class="token punctuation">(</span>document<span class="token punctuation">,</span> <span class="token string">"Hello"</span><span class="token punctuation">,</span> cursor_pos<span class="token punctuation">)</span>
+undo_stack<span class="token punctuation">.</span>push<span class="token punctuation">(</span>cmd<span class="token punctuation">)</span> <span class="token comment"># 自动执行 cmd.redo()</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>undo()</code></strong> / <strong><code>redo()</code></strong><br>
+<strong>中文</strong>：手动执行撤销/重做操作（通常绑定到菜单的 <code>Undo</code> 和 <code>Redo</code> 动作上）。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>undo_action <span class="token operator">=</span> undo_stack<span class="token punctuation">.</span>createUndoAction<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"撤销(&amp;U)"</span><span class="token punctuation">)</span>
+redo_action <span class="token operator">=</span> undo_stack<span class="token punctuation">.</span>createRedoAction<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"重做(&amp;R)"</span><span class="token punctuation">)</span>
+edit_menu<span class="token punctuation">.</span>addAction<span class="token punctuation">(</span>undo_action<span class="token punctuation">)</span>
+edit_menu<span class="token punctuation">.</span>addAction<span class="token punctuation">(</span>redo_action<span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>createUndoAction(parent: QObject, prefix: str)</code></strong> / <strong><code>createRedoAction(parent: QObject, prefix: str)</code></strong><br>
+<strong>中文</strong>：直接生成绑定好的 <code>QAction</code> 对象，可以直接塞进菜单栏或工具栏，它会自动处理快捷键并使能/禁用的状态。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># 下面的动作会自动变灰禁用（当栈为空时）</span>
+menu<span class="token punctuation">.</span>addAction<span class="token punctuation">(</span>undo_stack<span class="token punctuation">.</span>createUndoAction<span class="token punctuation">(</span>self<span class="token punctuation">,</span> <span class="token string">"撤销"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>isUndoAvailable()</code></strong> / <strong><code>isRedoAvailable()</code></strong><br>
+<strong>中文</strong>：判断当前是否还可以撤销/重做。</p>
+</li>
+<li>
+<p><strong><code>setUndoLimit(limit: int)</code></strong><br>
+<strong>中文</strong>：限制撤销步数（防止内存溢出，默认无限制，但建议设为 <code>100</code> 或 <code>50</code>）。</p>
+</li>
+<li>
+<p><strong><code>clear()</code></strong><br>
+<strong>中文</strong>：清空整个撤销栈（通常在打开新文件时调用）。</p>
+</li>
+</ul>
+<h3 id="-qundostack-的核心信号">🟢 QUndoStack 的核心信号 </h3>
+<ul>
+<li><strong><code>canUndoChanged(canUndo: bool)</code></strong>：是否可撤销状态发生改变时发射。</li>
+<li><strong><code>canRedoChanged(canRedo: bool)</code></strong>：是否可重做状态发生改变时发射。</li>
+<li><strong><code>indexChanged(idx: int)</code></strong>：当前栈指针位置发生变化时发射。</li>
+<li><strong><code>cleanChanged(clean: bool)</code></strong>：文件是否处于“已保存未修改”的干净状态发生改变时发射。</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>---
+
+</code></pre>
+      </div>
+      <div class="md-sidebar-toc"><div class="md-toc">
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="0">
+  <a href="#pyside6-extensions" class="md-toc-link">PySide6-Extensions</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#前言本文件涵盖范围" class="md-toc-link">前言：本文件涵盖范围</a>
+</div>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#一--qcolordialog--标准颜色选择对话框" class="md-toc-link">一、 QColorDialog —— 标准颜色选择对话框</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#-qcolordialog-的核心信号" class="md-toc-link">🟢 QColorDialog 的核心信号</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#二--qfontdialog--标准字体选择对话框" class="md-toc-link">二、 QFontDialog —— 标准字体选择对话框</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#-qfontdialog-的核心信号" class="md-toc-link">🟢 QFontDialog 的核心信号</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#三--qprogressdialog--模态进度对话框处理耗时操作" class="md-toc-link">三、 QProgressDialog —— 模态进度对话框（处理耗时操作）</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#-qprogressdialog-的核心信号" class="md-toc-link">🟢 QProgressDialog 的核心信号</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#四--qsystemtrayicon--系统托盘图标后台常驻程序" class="md-toc-link">四、 QSystemTrayIcon —— 系统托盘图标（后台常驻程序）</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#-qsystemtrayicon-的核心信号" class="md-toc-link">🟢 QSystemTrayIcon 的核心信号</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#五--qmovie--动态图片播放器gif-动画" class="md-toc-link">五、 QMovie —— 动态图片播放器（GIF 动画）</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#-qmovie-的核心信号" class="md-toc-link">🟢 QMovie 的核心信号</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#六--qwebengineview--内嵌网页浏览器需独立安装包" class="md-toc-link">六、 QWebEngineView —— 内嵌网页浏览器（需独立安装包）</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#-qwebengineview-的核心信号" class="md-toc-link">🟢 QWebEngineView 的核心信号</a>
+</div>
+</details>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#七--模型-视图架构model-view-处理海量数据的终极武器" class="md-toc-link">七、 模型-视图架构（Model-View）—— 处理海量数据的终极武器</a>
+</div>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#八--qprocess--独立子进程管理系统命令调用" class="md-toc-link">八、 QProcess —— 独立子进程管理（系统命令调用）</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#-qprocess-的核心信号" class="md-toc-link">🟢 QProcess 的核心信号</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#九--qshortcut--独立的键盘快捷方式" class="md-toc-link">九、 QShortcut —— 独立的键盘快捷方式</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#-qshortcut-的核心信号" class="md-toc-link">🟢 QShortcut 的核心信号</a>
+</div>
+</details>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#十--qgraphicseffect--现代-ui-特效引擎阴影与透明" class="md-toc-link">十、 QGraphicsEffect —— 现代 UI 特效引擎（阴影与透明）</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#101-qgraphicsdropshadoweffect投影阴影" class="md-toc-link">10.1 QGraphicsDropShadowEffect（投影阴影）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#102-qgraphicsopacityeffect透明度淡入淡出" class="md-toc-link">10.2 QGraphicsOpacityEffect（透明度/淡入淡出）</a>
+</div>
+</details>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#十一--qfile-qdir-与-qfileinfo--底层文件系统操作" class="md-toc-link">十一、 QFile、QDir 与 QFileInfo —— 底层文件系统操作</a>
+</div>
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="1">
+  <a href="#十二--qundostack--撤销与重做栈商业级应用必备" class="md-toc-link">十二、 QUndoStack —— 撤销与重做栈（商业级应用必备）</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="2">
+  <a href="#-qundostack-的核心信号" class="md-toc-link">🟢 QUndoStack 的核心信号</a>
+</div>
+</details>
+</details>
+</div>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    
+    
+    
+    
+    
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  
+    </body></html>

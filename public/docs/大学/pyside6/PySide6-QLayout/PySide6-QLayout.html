@@ -1,0 +1,385 @@
+<!DOCTYPE html><html><head>
+      <title>PySide6-QLayout</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-details{margin:0;padding:0;border:none}.markdown-preview .md-toc summary.md-toc-link-wrapper{cursor:pointer;list-style-position:outside}.markdown-preview .md-toc summary.md-toc-link-wrapper::marker{font-size:.85em}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='0']{margin-left:12px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='1']{margin-left:28px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='2']{margin-left:44px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='3']{margin-left:60px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='4']{margin-left:76px}.markdown-preview .md-toc .md-toc-link-wrapper[data-level='5']{margin-left:80px}.markdown-preview a.tag,.markdown-preview a.tag:active,.markdown-preview a.tag:link,.markdown-preview a.tag:visited,.markdown-preview span.tag:not(.token){display:inline-block;background-color:var(--vscode-badge-background,rgba(127,127,127,.18));color:var(--vscode-badge-foreground,currentColor);border-radius:2em;font-size:.85em;font-weight:500;padding:.05em .55em;line-height:1.5;white-space:nowrap;text-decoration:none;text-shadow:none;box-shadow:none;transition:background-color .12s ease,opacity .12s ease}.markdown-preview a.tag{cursor:pointer}.markdown-preview a.tag:focus,.markdown-preview a.tag:hover{background-color:var(--vscode-badge-background,rgba(127,127,127,.32));color:var(--vscode-badge-foreground,currentColor);opacity:.85;text-decoration:none;outline:0}.markdown-preview .wikilink-embed-content{border-left:3px solid var(--vscode-textBlockQuote-border,rgba(128,128,128,.3));background:var(--vscode-textBlockQuote-background,rgba(128,128,128,.05));margin:.5em 0;padding:.5em .75em;border-radius:0 3px 3px 0}.markdown-preview .wikilink-embed-content.wikilink-embed-error{border-left-color:var(--vscode-errorForeground,#cf222e);color:var(--vscode-errorForeground,#cf222e);font-style:italic;opacity:.8}.markdown-preview .wikilink-embed-content h1:first-child,.markdown-preview .wikilink-embed-content h2:first-child,.markdown-preview .wikilink-embed-content h3:first-child,.markdown-preview .wikilink-embed-content h4:first-child,.markdown-preview .wikilink-embed-content h5:first-child,.markdown-preview .wikilink-embed-content h6:first-child{margin-top:.25em}.markdown-preview .wikilink-embed-content .wikilink-embed-content{margin:.25em 0;padding:.25em .5em}.markdown-preview .block-id{display:none}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));border:4px solid var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));background-clip:content-box}.scrollbar-style::-webkit-scrollbar-thumb:hover{background-color:var(--vscode-scrollbarSlider-hoverBackground,rgba(120,120,120,.66))}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));border:4px solid var(--vscode-scrollbarSlider-background,rgba(150,150,150,.66));background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb:hover{background-color:var(--vscode-scrollbarSlider-hoverBackground,rgba(120,120,120,.66))}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-details{margin:0;padding:0;border:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='0']{padding-left:0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='1']{padding-left:16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='2']{padding-left:32px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='3']{padding-left:48px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='4']{padding-left:64px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper[data-level='5']{padding-left:80px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. -->
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script>
+    </head>
+    <body for="html-export">
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="pyside6-qlayout">PySide6-QLayout </h1>
+<hr>
+<h2 id="前言什么是布局管理器">前言：什么是布局管理器？ </h2>
+<p><em>布局管理器是 PySide6 中控制控件排版与尺寸的核心机制。它们<strong>不继承自 QWidget</strong>（不是视觉控件），而是继承自 <code>QLayout</code>。布局管理器接管控件的几何计算，让你无需手写 <code>move()</code> 和 <code>resize()</code>，完美实现界面自适应。</em></p>
+<hr>
+<h2 id="一--基类qlayout--所有布局的抽象基类">一、 基类：QLayout —— 所有布局的抽象基类 </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtWidgets import QLayout</code><br>
+<em>作为一个抽象类，一般不直接实例化，但它的通用属性贯穿所有后续子布局。</em></p>
+<ul>
+<li>
+<p><strong><code>setContentsMargins(left: int, top: int, right: int, bottom: int)</code></strong> / <strong><code>contentsMargins()</code></strong><br>
+<strong>中文</strong>：设置/获取布局<strong>整体</strong>与父控件边缘的距离（像素）。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>layout<span class="token punctuation">.</span>setContentsMargins<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span> <span class="token comment"># 上下左右各留 20px</span>
+margins <span class="token operator">=</span> layout<span class="token punctuation">.</span>contentsMargins<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>getContentsMargins()</code></strong><br>
+<strong>中文</strong>：获取边距，返回一个包含 <code>(left, top, right, bottom)</code> 的元组。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>l<span class="token punctuation">,</span> t<span class="token punctuation">,</span> r<span class="token punctuation">,</span> b <span class="token operator">=</span> layout<span class="token punctuation">.</span>getContentsMargins<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>spacing()</code></strong> / <strong><code>setSpacing(spacing: int)</code></strong><br>
+<strong>中文</strong>：设置/获取布局内部<strong>相邻控件</strong>之间的像素间距。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>layout<span class="token punctuation">.</span>setSpacing<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token comment"># 控件之间相距 10px</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>parentWidget()</code></strong><br>
+<strong>中文</strong>：获取此布局所绑定的父 <code>QWidget</code> 对象。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>widget <span class="token operator">=</span> layout<span class="token punctuation">.</span>parentWidget<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment"># 拿到主窗口句柄</span>
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="二--直系子类qboxlayout--盒子布局线性基类">二、 直系子类：QBoxLayout —— 盒子布局（线性基类） </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtWidgets import QBoxLayout</code><br>
+<em>由于 <code>QVBoxLayout</code> 和 <code>QHBoxLayout</code> 几乎一模一样，它们共同继承自 <code>QBoxLayout</code>，这里收纳了它们共同的核心方法。</em></p>
+<ul>
+<li>
+<p><strong><code>addWidget(widget: QWidget, stretch: int = 0, alignment: Qt.AlignmentFlag = Qt.AlignmentFlag())</code></strong><br>
+<strong>中文</strong>：向布局尾部添加一个控件。<br>
+<strong>参数</strong>：</p>
+<ul>
+<li><code>stretch</code> – 拉伸因子（整数）。决定了控件占据剩余空间的比例。例如两个控件，拉伸因子分别为 1 和 2，则第二个控件高度/宽度是第一项的 2 倍。</li>
+<li><code>alignment</code> – 对齐方式（如 <code>Qt.AlignCenter</code>、<code>Qt.AlignRight</code>）。</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>v_layout<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QPushButton<span class="token punctuation">(</span><span class="token string">"按钮1"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> stretch<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> alignment<span class="token operator">=</span>Qt<span class="token punctuation">.</span>AlignCenter<span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>insertWidget(index: int, widget: QWidget, stretch: int = 0, alignment: Qt.AlignmentFlag = Qt.AlignmentFlag())</code></strong><br>
+<strong>中文</strong>：在指定的索引位置插入一个控件，而不是追加在末尾。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>layout<span class="token punctuation">.</span>insertWidget<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> QPushButton<span class="token punctuation">(</span><span class="token string">"插入中间的按钮"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>addLayout(layout: QLayout, stretch: int = 0)</code></strong> / <strong><code>insertLayout(index: int, layout: QLayout, stretch: int = 0)</code></strong><br>
+<strong>中文</strong>：在布局中嵌套另一个子布局，实现复杂的排版结构。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>inner_h_layout <span class="token operator">=</span> QHBoxLayout<span class="token punctuation">(</span><span class="token punctuation">)</span>
+inner_h_layout<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QPushButton<span class="token punctuation">(</span><span class="token string">"内嵌按钮1"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+outer_v_layout<span class="token punctuation">.</span>addLayout<span class="token punctuation">(</span>inner_h_layout<span class="token punctuation">)</span> <span class="token comment"># 垂直嵌套水平</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>addStretch(stretch: int = 0)</code></strong> / <strong><code>insertStretch(index: int, stretch: int = 0)</code></strong><br>
+<strong>中文</strong>：添加一个“无形弹簧”。它会自动占据布局中剩余的全部空间，把其他可压缩的控件挤到一边。这是控制布局上下左右对齐最常用的工具。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token comment"># 两个按钮紧贴右侧</span>
+layout<span class="token punctuation">.</span>addStretch<span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token comment"># 弹簧会占据左侧所有空间</span>
+layout<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QPushButton<span class="token punctuation">(</span><span class="token string">"保存"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+layout<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QPushButton<span class="token punctuation">(</span><span class="token string">"取消"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>addSpacing(spacing: int)</code></strong> / <strong><code>insertSpacing(index: int, spacing: int)</code></strong><br>
+<strong>中文</strong>：在控件之间插入<strong>固定像素值</strong>的空白区域。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>layout<span class="token punctuation">.</span>addSpacing<span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">)</span> <span class="token comment"># 强行插入 40px 的空隙</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setStretchFactor(widget: QWidget, stretch: int)</code></strong> / <strong><code>setStretchFactor(layout: QLayout, stretch: int)</code></strong><br>
+<strong>中文</strong>：在布局已经创建好后，动态修改某个特定控件或子布局的拉伸因子。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>layout<span class="token punctuation">.</span>setStretchFactor<span class="token punctuation">(</span>my_button<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment"># 把拉伸权重动态改为 3</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>removeWidget(widget: QWidget)</code></strong> / <strong><code>removeItem(item: QLayoutItem)</code></strong><br>
+<strong>中文</strong>：从布局中移除指定控件或布局项。注意：移除后控件依然存在，你需要手动调用 <code>widget.deleteLater()</code> 彻底销毁它以释放内存。</p>
+</li>
+<li>
+<p><strong><code>setDirection(direction: QBoxLayout.Direction)</code></strong> / <strong><code>direction()</code></strong><br>
+<strong>中文</strong>：动态修改盒子的排列方向（从上到下、从左到右、从右到左、从下到上）。<br>
+<strong>参数</strong>：<code>QBoxLayout.TopToBottom</code>（垂直向下）、<code>QBoxLayout.LeftToRight</code>（水平向右）、<code>QBoxLayout.RightToLeft</code>（水平向左）、<code>QBoxLayout.BottomToTop</code>（垂直向上）。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>v_layout<span class="token punctuation">.</span>setDirection<span class="token punctuation">(</span>QBoxLayout<span class="token punctuation">.</span>RightToLeft<span class="token punctuation">)</span> <span class="token comment"># 瞬间变成从右向左排</span>
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="三--qvboxlayout--垂直布局--qhboxlayout--水平布局">三、 QVBoxLayout —— 垂直布局 &amp; QHBoxLayout —— 水平布局 </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtWidgets import QVBoxLayout, QHBoxLayout</code><br>
+<em>这两个类直接继承自 <code>QBoxLayout</code>，除了构造函数不同，所有方法完全继承自上面的 <code>QBoxLayout</code>。</em></p>
+<ul>
+<li><strong><code>QVBoxLayout(parent: QWidget = None)</code></strong> / <strong><code>QHBoxLayout(parent: QWidget = None)</code></strong><br>
+<strong>中文</strong>：构造函数<br>
+<strong>参数</strong>：<code>parent</code> – 绑定到的父 <code>QWidget</code>。也可以在创建后通过 <code>parent.setLayout(layout)</code> 绑定。<pre data-role="codeBlock" data-info="python" class="language-python python"><code>window <span class="token operator">=</span> QWidget<span class="token punctuation">(</span><span class="token punctuation">)</span>
+v_layout <span class="token operator">=</span> QVBoxLayout<span class="token punctuation">(</span>window<span class="token punctuation">)</span>    <span class="token comment"># 绑定父窗口</span>
+v_layout<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QPushButton<span class="token punctuation">(</span><span class="token string">"顶部"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+v_layout<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QPushButton<span class="token punctuation">(</span><span class="token string">"底部"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+window<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="四--qgridlayout--网格布局">四、 QGridLayout —— 网格布局 </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtWidgets import QGridLayout</code><br>
+<em>将空间划分为网格（行和列），允许指定控件跨越多个行和列。</em></p>
+<ul>
+<li>
+<p><strong><code>QGridLayout(parent: QWidget = None)</code></strong><br>
+<strong>中文</strong>：构造函数</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>grid <span class="token operator">=</span> QGridLayout<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>addWidget(widget: QWidget, row: int, column: int, rowSpan: int = 1, columnSpan: int = 1, alignment: Qt.AlignmentFlag = Qt.AlignmentFlag())</code></strong><br>
+<strong>中文</strong>：放置控件到网格的指定位置。<br>
+<strong>参数</strong>：</p>
+<ul>
+<li><code>row</code> – 从 0 开始的行号。</li>
+<li><code>column</code> – 从 0 开始的列号。</li>
+<li><code>rowSpan</code> – 该控件纵向跨越几行。</li>
+<li><code>columnSpan</code> – 该控件横向跨越几列（类似 Excel 的合并单元格）。</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>grid<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QPushButton<span class="token punctuation">(</span><span class="token string">"(0,0)"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+grid<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QPushButton<span class="token punctuation">(</span><span class="token string">"跨两行"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment"># 第1和第2行合并</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>addLayout(layout: QLayout, row: int, column: int, rowSpan: int = 1, columnSpan: int = 1, alignment: Qt.AlignmentFlag = Qt.AlignmentFlag())</code></strong><br>
+<strong>中文</strong>：放置一个子布局到网格。</p>
+</li>
+<li>
+<p><strong><code>setRowStretch(row: int, stretch: int)</code></strong> / <strong><code>setColumnStretch(column: int, stretch: int)</code></strong><br>
+<strong>中文</strong>：设置某一行/某一列的拉伸比例。<br>
+<strong>作用</strong>：决定当窗口变大时，多余的空间如何分配给不同的行和列。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>grid<span class="token punctuation">.</span>setRowStretch<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment"># 第0行占 1 份高度</span>
+grid<span class="token punctuation">.</span>setRowStretch<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment"># 第1行占 2 份高度（所以它比第一行高）</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setRowMinimumHeight(row: int, min_size: int)</code></strong> / <strong><code>setColumnMinimumWidth(column: int, min_size: int)</code></strong><br>
+<strong>中文</strong>：强制指定某行的最低高度或某列的最低宽度，防止在窗口极度缩小时控件被压扁。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>grid<span class="token punctuation">.</span>setColumnMinimumWidth<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">150</span><span class="token punctuation">)</span> <span class="token comment"># 第0列永远不能小于 150px</span>
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="五--qformlayout--表单布局">五、 QFormLayout —— 表单布局 </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtWidgets import QFormLayout</code><br>
+<em>专门为“标签 + 输入框”这种两列排版设计的布局，自动左对齐标签、右对齐输入框。</em></p>
+<ul>
+<li>
+<p><strong><code>QFormLayout(parent: QWidget = None)</code></strong><br>
+<strong>中文</strong>：构造函数</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>form <span class="token operator">=</span> QFormLayout<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>addRow(label: QWidget / str, field: QWidget)</code></strong><br>
+<strong>中文</strong>：添加一行。<code>label</code> 可以是 <code>QLabel</code> 对象、字符串；<code>field</code> 是输入控件。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>form<span class="token punctuation">.</span>addRow<span class="token punctuation">(</span><span class="token string">"用户名："</span><span class="token punctuation">,</span> QLineEdit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+form<span class="token punctuation">.</span>addRow<span class="token punctuation">(</span><span class="token string">"密 码："</span><span class="token punctuation">,</span> QLineEdit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>insertRow(row: int, label: QWidget / str, field: QWidget)</code></strong><br>
+<strong>中文</strong>：在指定行号前插入新的一行。</p>
+</li>
+<li>
+<p><strong><code>removeRow(row: int)</code></strong> / <strong><code>removeRow(widget: QWidget)</code></strong><br>
+<strong>中文</strong>：通过行号或具体的控件对象删除某一行。</p>
+</li>
+<li>
+<p><strong><code>setLabelAlignment(alignment: Qt.AlignmentFlag)</code></strong><br>
+<strong>中文</strong>：设置左侧标签列的对齐方式。<br>
+<strong>作用</strong>：通常我们会将标签设为 <code>Qt.AlignRight</code>（右对齐），让“用户名：”紧贴输入框，看起来更专业。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>form<span class="token punctuation">.</span>setLabelAlignment<span class="token punctuation">(</span>Qt<span class="token punctuation">.</span>AlignmentFlag<span class="token punctuation">.</span>AlignRight<span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setFormAlignment(alignment: Qt.AlignmentFlag)</code></strong><br>
+<strong>中文</strong>：设置整个表单在父窗口中的位置（如 <code>Qt.AlignCenter</code> 居中）。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>form<span class="token punctuation">.</span>setFormAlignment<span class="token punctuation">(</span>Qt<span class="token punctuation">.</span>AlignCenter <span class="token operator">|</span> Qt<span class="token punctuation">.</span>AlignVCenter<span class="token punctuation">)</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setHorizontalSpacing(spacing: int)</code></strong> / <strong><code>setVerticalSpacing(spacing: int)</code></strong><br>
+<strong>中文</strong>：单独设置标签与输入框之间的水平间距，以及不同行之间的垂直间距。</p>
+</li>
+</ul>
+<hr>
+<h2 id="六--qsizepolicy--控件尺寸策略布局对控件的约束契约">六、 QSizePolicy —— 控件尺寸策略（布局对控件的约束契约） </h2>
+<p><strong>导入</strong>：<code>from PySide6.QtWidgets import QSizePolicy</code><br>
+<em>布局之所以能拉伸或压缩一个控件，是因为控件自身带有 <code>QSizePolicy</code>。如果某个按钮死活拉伸不了，一定是它的策略没设对。</em></p>
+<ul>
+<li><strong><code>QSizePolicy(horizontal: QSizePolicy.Policy, vertical: QSizePolicy.Policy)</code></strong><br>
+<strong>中文</strong>：构造尺寸策略对象。<br>
+<strong>参数</strong>（水平/垂直策略）：
+<ul>
+<li><code>QSizePolicy.Fixed</code>：<strong>固定尺寸</strong>。永远不能变大或变小，强制保持 <code>sizeHint()</code> 返回的大小。</li>
+<li><code>QSizePolicy.Minimum</code>：<strong>最小尺寸</strong>。可以变大，但不能缩小。</li>
+<li><code>QSizePolicy.Maximum</code>：<strong>最大尺寸</strong>。可以缩小，但不能变大。</li>
+<li><code>QSizePolicy.Preferred</code>：<strong>偏好尺寸</strong>（默认）。既可以变大也可以缩小，但最佳大小是 <code>sizeHint()</code>。</li>
+<li><code>QSizePolicy.Expanding</code>：<strong>膨胀尺寸</strong>。它会拼命占满所有剩余空间（如 <code>QLineEdit</code>、<code>QTextEdit</code>）。</li>
+<li><code>QSizePolicy.MinimumExpanding</code>：最小膨胀，极少使用。</li>
+<li><code>QSizePolicy.Ignored</code>：无视控件自身定义的尺寸提示。</li>
+</ul>
+</li>
+</ul>
+<p><strong>用法示例：</strong></p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>btn <span class="token operator">=</span> QPushButton<span class="token punctuation">(</span><span class="token string">"固定按钮"</span><span class="token punctuation">)</span>
+<span class="token comment"># 构造一个水平/垂直都固定的策略</span>
+sp <span class="token operator">=</span> QSizePolicy<span class="token punctuation">(</span>QSizePolicy<span class="token punctuation">.</span>Policy<span class="token punctuation">.</span>Fixed<span class="token punctuation">,</span> QSizePolicy<span class="token punctuation">.</span>Policy<span class="token punctuation">.</span>Fixed<span class="token punctuation">)</span>
+btn<span class="token punctuation">.</span>setSizePolicy<span class="token punctuation">(</span>sp<span class="token punctuation">)</span>
+</code></pre><ul>
+<li>
+<p><strong><code>setHorizontalPolicy(policy: QSizePolicy.Policy)</code></strong> / <strong><code>setVerticalPolicy(policy: QSizePolicy.Policy)</code></strong><br>
+<strong>中文</strong>：分别单独修改水平或垂直方向的控制策略。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>btn<span class="token punctuation">.</span>setSizePolicy<span class="token punctuation">(</span>QSizePolicy<span class="token punctuation">.</span>Expanding<span class="token punctuation">,</span> QSizePolicy<span class="token punctuation">.</span>Fixed<span class="token punctuation">)</span> <span class="token comment"># 水平一直拉宽，高度固定</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setHorizontalStretch(stretch: int)</code></strong> / <strong><code>setVerticalStretch(stretch: int)</code></strong><br>
+<strong>中文</strong>：直接指定该控件的拉伸权重。相当于给控件自身定了一个固定的伸缩比重。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>btn<span class="token punctuation">.</span>setSizePolicy<span class="token punctuation">(</span>QSizePolicy<span class="token punctuation">.</span>Expanding<span class="token punctuation">,</span> QSizePolicy<span class="token punctuation">.</span>Expanding<span class="token punctuation">)</span>
+btn<span class="token punctuation">.</span>setHorizontalStretch<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment"># 拉伸时该控件占据 2 份宽度</span>
+</code></pre>
+</li>
+<li>
+<p><strong><code>setRetainSizeWhenHidden(hidden: bool)</code></strong> / <strong><code>retainSizeWhenHidden()</code></strong><br>
+<strong>中文</strong>：设置当控件被隐藏（<code>hide()</code>）时，是否还在布局中<strong>占据原来的空间位置</strong>。<br>
+<strong>作用</strong>：默认隐藏后会折叠空间。设为 <code>True</code> 可以避免视觉上的跳变。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>sp <span class="token operator">=</span> btn<span class="token punctuation">.</span>sizePolicy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+sp<span class="token punctuation">.</span>setRetainSizeWhenHidden<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token comment"># 即使隐藏，也留下空白位置</span>
+btn<span class="token punctuation">.</span>setSizePolicy<span class="token punctuation">(</span>sp<span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="七--高阶实战嵌套布局范例商业软件标配">七、 高阶实战：嵌套布局范例（商业软件标配） </h2>
+<p><em>90% 的界面的终极形态，都是垂直布局包裹水平布局，再包裹网格。</em></p>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-from">from</span> PySide6<span class="token punctuation">.</span>QtWidgets <span class="token keyword keyword-import">import</span> QWidget<span class="token punctuation">,</span> QVBoxLayout<span class="token punctuation">,</span> QHBoxLayout<span class="token punctuation">,</span> QPushButton<span class="token punctuation">,</span> QTextEdit<span class="token punctuation">,</span> QGridLayout
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">MyWindow</span><span class="token punctuation">(</span>QWidget<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword keyword-def">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        
+        <span class="token comment"># 1. 主容器：垂直布局</span>
+        main_layout <span class="token operator">=</span> QVBoxLayout<span class="token punctuation">(</span>self<span class="token punctuation">)</span>
+        
+        <span class="token comment"># 2. 顶部工具栏：水平布局</span>
+        top_layout <span class="token operator">=</span> QHBoxLayout<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        top_layout<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QPushButton<span class="token punctuation">(</span><span class="token string">"新建"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        top_layout<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QPushButton<span class="token punctuation">(</span><span class="token string">"保存"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        top_layout<span class="token punctuation">.</span>addStretch<span class="token punctuation">(</span><span class="token punctuation">)</span>          <span class="token comment"># 弹簧把前面按钮挤到左边</span>
+        top_layout<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QPushButton<span class="token punctuation">(</span><span class="token string">"关于"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        main_layout<span class="token punctuation">.</span>addLayout<span class="token punctuation">(</span>top_layout<span class="token punctuation">)</span> <span class="token comment"># 嵌入主容器</span>
+        
+        <span class="token comment"># 3. 中间功能区：网格布局</span>
+        grid <span class="token operator">=</span> QGridLayout<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        grid<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QPushButton<span class="token punctuation">(</span><span class="token string">"功能A"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+        grid<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QPushButton<span class="token punctuation">(</span><span class="token string">"功能B"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        grid<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QTextEdit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token comment"># 一个文本框占满下方两列</span>
+        main_layout<span class="token punctuation">.</span>addLayout<span class="token punctuation">(</span>grid<span class="token punctuation">)</span>
+        
+        <span class="token comment"># 4. 底部状态栏：水平布局</span>
+        bottom_layout <span class="token operator">=</span> QHBoxLayout<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        bottom_layout<span class="token punctuation">.</span>addStretch<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        bottom_layout<span class="token punctuation">.</span>addWidget<span class="token punctuation">(</span>QPushButton<span class="token punctuation">(</span><span class="token string">"退出"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        main_layout<span class="token punctuation">.</span>addLayout<span class="token punctuation">(</span>bottom_layout<span class="token punctuation">)</span>
+</code></pre><hr>
+<h2 id="八--布局类补充遗漏细节">八、 布局类补充遗漏细节 </h2>
+<ul>
+<li><strong><code>setSizeConstraint(constraint: QLayout.SizeConstraint)</code></strong><br>
+<strong>中文</strong>：设置布局对所在容器尺寸的约束策略。<br>
+<strong>作用</strong>：这是控制弹窗尺寸的超级利器。默认布局只是把控件塞进去。<br>
+<strong>参数</strong>：
+<ul>
+<li><code>QLayout.SizeConstraint.SetFixedSize</code>：<strong>极常用</strong>。布局会<strong>自动计算包裹内部所有子控件所需的最小尺寸</strong>，并强制把父 <code>QWidget</code> 锁定在这个最小尺寸上。</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python python"><code>layout<span class="token punctuation">.</span>setSizeConstraint<span class="token punctuation">(</span>QLayout<span class="token punctuation">.</span>SizeConstraint<span class="token punctuation">.</span>SetFixedSize<span class="token punctuation">)</span> 
+<span class="token comment"># 效果：这个容器的窗口会刚好紧紧包裹住内部的按钮和文本框，没有多余留白</span>
+</code></pre>
+</li>
+</ul>
+<hr>
+
+      </div>
+      <div class="md-sidebar-toc"><div class="md-toc">
+<details open="" class="md-toc-details">
+<summary class="md-toc-link-wrapper" data-level="0">
+  <a href="#pyside6-qlayout" class="md-toc-link">PySide6-QLayout</a>
+</summary>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#前言什么是布局管理器" class="md-toc-link">前言：什么是布局管理器？</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#一--基类qlayout--所有布局的抽象基类" class="md-toc-link">一、 基类：QLayout —— 所有布局的抽象基类</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#二--直系子类qboxlayout--盒子布局线性基类" class="md-toc-link">二、 直系子类：QBoxLayout —— 盒子布局（线性基类）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#三--qvboxlayout--垂直布局--qhboxlayout--水平布局" class="md-toc-link">三、 QVBoxLayout —— 垂直布局 &amp; QHBoxLayout —— 水平布局</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#四--qgridlayout--网格布局" class="md-toc-link">四、 QGridLayout —— 网格布局</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#五--qformlayout--表单布局" class="md-toc-link">五、 QFormLayout —— 表单布局</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#六--qsizepolicy--控件尺寸策略布局对控件的约束契约" class="md-toc-link">六、 QSizePolicy —— 控件尺寸策略（布局对控件的约束契约）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#七--高阶实战嵌套布局范例商业软件标配" class="md-toc-link">七、 高阶实战：嵌套布局范例（商业软件标配）</a>
+</div>
+<div class="md-toc-link-wrapper" data-level="1">
+  <a href="#八--布局类补充遗漏细节" class="md-toc-link">八、 布局类补充遗漏细节</a>
+</div>
+</details>
+</div>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    
+    
+    
+    
+    
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  
+    </body></html>
