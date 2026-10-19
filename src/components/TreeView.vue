@@ -15,52 +15,71 @@ const search = defineModel<string>('search')
     <div id="tree-container">
         <input v-model="search" type="text" placeholder="🔍 搜索资料..." class="search-input">
 
-        <p v-if="search">
-            找到 <strong>{{ filteredCount }}</strong> 份资料📚
-        </p>
-        <p v-else>
-            总共 <strong>{{ totalCount }}</strong> 份资料📚
-        </p>
+        <div class="status-bar">
+            <span v-if="search">
+                找到 <strong class="highlight">{{ filteredCount }}</strong> 份资料📚
+            </span>
+            <span v-else>
+                总共 <strong class="highlight">{{ totalCount }}</strong> 份资料📚
+            </span>
+        </div>
 
-        <p v-if="filteredCount===0">📭 未找到匹配的资料</p>
+        <div v-if="filteredCount === 0" class="empty-state">
+            <span>📭 未找到匹配的资料</span>
+        </div>
         <TreeNode v-else :node="tree" :force-open="Boolean(search)"></TreeNode>
     </div>
 </template>
 
 <style scoped>
-/* 搜索框美化 */
+/* 搜索框：占满宽度，更加圆润 */
 .search-input {
     width: 100%;
-    max-width: 320px;         /* 控制最大宽度，不会拉得满屏都是 */
-    box-sizing: border-box;   /* 防止 padding 撑破宽度 */
-    padding: 10px 16px;       /* 上下左右的内边距，让输入框更饱满 */
-    margin-bottom: 16px;      /* 和下方文字留出呼吸空间 */
-    
-    font-size: 14px;
-    color: #0f172a;
-    background-color: #f8fafc; /* 浅浅的灰蓝色背景 */
-    
-    border: 1px solid #cbd5e1; /* 默认灰色边框 */
-    border-radius: 8px;        /* 圆角 */
-    
-    outline: none;             /* 去掉浏览器默认的丑陋黑框 */
-    transition: all 0.2s ease; /* 状态切换时平滑过渡 */
+    box-sizing: border-box;
+    padding: 12px 16px;
+    font-size: 15px;
+    color: #1e293b;
+    background-color: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.2s ease;
 }
 
-/* 鼠标悬浮时边框加深 */
 .search-input:hover {
-    border-color: #94a3b8;
+    border-color: #cbd5e1;
 }
 
-/* 聚焦（点击输入）时的高亮效果 */
 .search-input:focus {
     background-color: #ffffff;
-    border-color: #2563eb;     /* 变蓝 */
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); /* 外加一圈淡淡的蓝色光晕 */
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
 }
 
-/* 美化提示文字（Placeholder）的颜色 */
 .search-input::placeholder {
     color: #94a3b8;
+}
+
+/* 状态栏 */
+.status-bar {
+    margin: 16px 0;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.highlight {
+    color: #3b82f6;
+    font-size: 1.1rem;
+    margin: 0 4px;
+}
+
+/* 空状态 */
+.empty-state {
+    padding: 40px 0;
+    text-align: center;
+    color: #94a3b8;
+    background: #f8fafc;
+    border-radius: 8px;
+    font-size: 15px;
 }
 </style>

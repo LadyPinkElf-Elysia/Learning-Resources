@@ -46,7 +46,6 @@ const fileUrl = (url: string): string => `/docs/${url}`
 </template>
 
 <style scoped>
-/* 1. 基础重置：去掉 ul 默认缩进，缩进全交由 tree-children 控制 */
 .tree-ul {
     list-style: none;
     margin: 0;
@@ -57,40 +56,41 @@ const fileUrl = (url: string): string => `/docs/${url}`
     margin: 2px 0;
 }
 
-/* 2. 行样式 */
+/* 行交互效果 */
 .tree-row {
-    padding: 4px 8px;
+    padding: 6px 10px; /* 加大一点点内边距，更好点按 */
     border-radius: 6px;
     cursor: pointer;
     line-height: 1.6;
+    transition: background-color 0.15s ease;
+    display: block; /* 确保整行都能点，且高度安全 */
 }
 
 .tree-row:hover {
-    background-color: #e2e8f0;
+    background-color: #f1f5f9;
 }
 
 .tree-text,
 .tree-link {
-    color: #0f172a;
+    color: #334155;
     text-decoration: none;
     font-size: 15px;
+    font-weight: 500;
 }
 
 .tree-link {
     color: #2563eb;
+    font-weight: 400;
 }
 
-/* =========================================
-   3. 核心：利用 tree-children 的左边框画出对齐线
-   ========================================= */
+.tree-link:hover {
+    text-decoration: underline;
+}
+
+/* 连线部分（最稳的竖线） */
 .tree-children {
-    /* 就是这条边框构成了你要的竖线 | */
-    border-left: 1px solid #cbd5e1;
-
-    /* 竖线的位置：16px 刚好在父级 emoji 📁 的正中间下方 */
-    margin-left: 16px;
-
-    /* 子级内容距离线条的间距 */
+    border-left: 1px solid #e2e8f0; /* 颜色调浅一点，更精致 */
+    margin-left: 18px;
     padding-left: 12px;
 }
 </style>
